@@ -42,6 +42,9 @@
   .list td.item { width: 100%; max-width: 0; }
   .list td.item a { --gap: .1rem; color: inherit; text-decoration: none; }
   .list tbody tr { cursor: pointer; }
+  /* tabs sit at the top of the list card, so the list and reader cards start at the same height */
+  .list .card > .tabs { margin: calc(-1 * var(--s-4)) calc(-1 * var(--s-4)) 0; padding-inline: var(--s-4); }
+  .list .card > .tabs + header { margin-top: 0; }
   .reader h3 { margin: 0 0 var(--s-2); font-size: var(--fs-xl); }
 </style>
 </head>
@@ -90,12 +93,12 @@
 
       <div class="inbox">
         <section class="list" id="list">
-          <div class="tabs">
-            <a href="#list" aria-current="page">All</a>
-            <a href="#list">Unread <span class="badge">3</span></a>
-            <a href="#list">Starred</a>
-          </div>
           <div class="card">
+            <div class="tabs">
+              <a href="#list" aria-current="page">All</a>
+              <a href="#list">Unread <span class="badge">3</span></a>
+              <a href="#list">Starred</a>
+            </div>
             <header>
               <div class="row nowrap">
                 <input type="checkbox" aria-label="Select all messages">
