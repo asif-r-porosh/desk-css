@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>dry.css Docs</title>
-<link rel="stylesheet" href="dist/dry.css">
-<link rel="stylesheet" href="dist/dry.icons.css">
+<title>desk.css Docs</title>
+<link rel="stylesheet" href="dist/desk.css">
+<link rel="stylesheet" href="dist/desk.icons.css">
 </head>
 <body>
 
 <header class="topbar">
   <button class="ghost icon narrow-only" popovertarget="side" aria-label="Menu"><span class="burger"></span></button>
-  <a class="brand" href="#start">dry.css</a>
+  <a class="brand" href="#start">desk.css</a>
   <span class="badge wide-only">v0.1</span>
   <div class="row nowrap push">
     <details class="dropdown end">
@@ -59,7 +59,7 @@
   <main>
     <!-- START -->
     <section id="start">
-      <h1>dry.css</h1>
+      <h1>desk.css</h1>
       <p class="text-lg muted">A lean CSS library for everyday tools. Plain HTML looks right with no classes; a short list of classes covers the rest. Sized for laptops, works on phones, no JavaScript needed.</p>
       <div class="grid cols-3">
         <div class="stat"><span class="label">Library, gzipped</span><span class="value">7 KB</span><span class="delta">26 KB minified</span></div>
@@ -68,10 +68,10 @@
       </div>
 
       <h2>Install</h2>
-      <p>Copy <code>dry.min.css</code>, <code>dry.icons.min.css</code> (optional) and the <code>fonts/</code> folder from <code>dist/</code> into the project, side by side. The readable <code>dry.css</code> and <code>dry.icons.css</code> in the same folder are identical apart from comments and whitespace.</p>
+      <p>Copy <code>desk.min.css</code>, <code>desk.icons.min.css</code> (optional) and the <code>fonts/</code> folder from <code>dist/</code> into the project, side by side. The readable <code>desk.css</code> and <code>desk.icons.css</code> in the same folder are identical apart from comments and whitespace.</p>
       <script type="text/plain" data-code>
-<link rel="stylesheet" href="dry.min.css">
-<link rel="stylesheet" href="dry.icons.min.css">  <!-- optional -->
+<link rel="stylesheet" href="desk.min.css">
+<link rel="stylesheet" href="desk.icons.min.css">  <!-- optional -->
 </script>
 
       <h2>Minimal page</h2>
@@ -82,7 +82,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Example tool</title>
-  <link rel="stylesheet" href="dry.min.css">
+  <link rel="stylesheet" href="desk.min.css">
 </head>
 <body>
   <main class="container">
@@ -93,7 +93,7 @@
 </body>
 </html>
 </script>
-      <p>Everything in dry.css sits in a cascade layer called <code>dry</code>. Any CSS written outside a layer wins over it automatically, so overrides never need <code>!important</code>.</p>
+      <p>Everything in desk.css sits in a cascade layer called <code>desk</code>. Any CSS written outside a layer wins over it automatically, so overrides never need <code>!important</code>.</p>
     </section>
 
     <!-- SETTINGS -->
@@ -426,13 +426,13 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
     <!-- ICONS -->
     <section id="icons">
       <h2>Icons</h2>
-      <p>Load <code>dry.icons.css</code>, then put the character code into any text. The icon follows the text's size and color; no extra tags or classes.</p>
+      <p>Load <code>desk.icons.css</code>, then put the character code into any text. The icon follows the text's size and color; no extra tags or classes.</p>
       <div class="card" data-example>
         <h3>&#xF02DC; Dashboard</h3>
         <p class="text-ok">&#xF05E0; Delivered</p>
         <button class="danger">&#xF01B4; Delete</button>
       </div>
-      <p class="text-sm muted">With a Nerd Font (v3 or newer) in the editor, the glyph itself can be pasted instead. Other editors and diffs show a box, so prefer the code in shared projects. Without <code>dry.icons.css</code> an icon shows as an empty box.</p>
+      <p class="text-sm muted">With a Nerd Font (v3 or newer) in the editor, the glyph itself can be pasted instead. Other editors and diffs show a box, so prefer the code in shared projects. Without <code>desk.icons.css</code> an icon shows as an empty box.</p>
       <div class="row">
         <input type="search" id="icon-search" placeholder="Search icons" aria-label="Search icons">
       </div>
@@ -791,7 +791,7 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
     <section id="limits">
       <h2>Rules and limits</h2>
       <h3>Browser support</h3>
-      <p>Current Chrome, Edge, Firefox and Safari. dry.css relies on <code>light-dark()</code>, relative colors, <code>:has()</code>, cascade layers and popover (all browsers since 2024). Opening dialogs with <code>commandfor</code> needs Chrome 135, Firefox 144 or Safari 26.2. Automatic black or white button text uses <code>contrast-color()</code>; older browsers get white.</p>
+      <p>Current Chrome, Edge, Firefox and Safari. desk.css relies on <code>light-dark()</code>, relative colors, <code>:has()</code>, cascade layers and popover (all browsers since 2024). Opening dialogs with <code>commandfor</code> needs Chrome 135, Firefox 144 or Safari 26.2. Automatic black or white button text uses <code>contrast-color()</code>; older browsers get white.</p>
       <h3>Deliberately left out</h3>
       <ul>
         <li>A 12-column grid. <code>.grid</code> and <code>.cols-N</code> cover real layouts without breakpoint classes.</li>
@@ -800,9 +800,9 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
         <li>Fonts beyond Latin. Other scripts fall back to the system font.</li>
       </ul>
       <h3>How overrides work</h3>
-      <p>The library lives in <code>@layer dry</code>. Project CSS written outside a layer always wins. Change a token on <code>:root</code> to restyle everything that uses it; target a class to change one component.</p>
+      <p>The library lives in <code>@layer desk</code>. Project CSS written outside a layer always wins. Change a token on <code>:root</code> to restyle everything that uses it; target a class to change one component.</p>
       <h3>Licenses</h3>
-      <p>dry.css itself is released under the MIT License. The bundled fonts and icons keep their own licenses, included in <code>dist/fonts/</code>: Hanken Grotesk and JetBrains Mono under the SIL Open Font License 1.1, Material Design Icons under Apache 2.0 (with the Pictogrammers notice), and Nerd Fonts Symbols, the source of the icon glyphs, under MIT.</p>
+      <p>desk.css itself is released under the MIT License. The bundled fonts and icons keep their own licenses, included in <code>dist/fonts/</code>: Hanken Grotesk and JetBrains Mono under the SIL Open Font License 1.1, Material Design Icons under Apache 2.0 (with the Pictogrammers notice), and Nerd Fonts Symbols, the source of the icon glyphs, under MIT.</p>
     </section>
   </main>
 </div>
