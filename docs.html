@@ -100,7 +100,7 @@
     <section id="settings">
       <h2>Page settings</h2>
       <p>Three attributes on <code>&lt;html&gt;</code> control the whole page. Leave one out to get its default. The buttons in the top bar change them on this page.</p>
-      <div class="table-wrap">
+      <div class="table-wrap" tabindex="0">
         <table>
           <thead><tr><th>Attribute</th><th>Values</th><th>Default</th></tr></thead>
           <tbody>
@@ -138,7 +138,7 @@
 
       <h3>Code block</h3>
       <div class="card" data-example>
-        <pre><code>$ smppctl bind status --route OA-02
+        <pre tabindex="0"><code>$ smppctl bind status --route OA-02
 OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
       </div>
 
@@ -663,7 +663,7 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
       <script type="text/plain" data-code>
 :root { --r: 2px; --side: 13rem; --font-sans: "Inter", system-ui, sans-serif; }
 </script>
-      <div class="table-wrap sticky">
+      <div class="table-wrap sticky" tabindex="0">
         <table class="compact">
           <thead><tr><th>Token</th><th>Default</th></tr></thead>
           <tbody id="token-rows"></tbody>
@@ -823,6 +823,7 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
     text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     text = text.replace(/[\u{F0000}-\u{F1FFF}]/gu, c => '&amp;#x' + c.codePointAt(0).toString(16).toUpperCase() + ';');
     const pre = document.createElement('pre');
+    pre.tabIndex = 0;
     pre.innerHTML = '<code>' + text + '</code>';
     return pre;
   }

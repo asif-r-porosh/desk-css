@@ -111,7 +111,7 @@
         <h2>Operator routes</h2>
         <label class="nowrap"><input type="checkbox" role="switch" id="compact-toggle"> Compact table</label>
       </div>
-      <div class="table-wrap sticky">
+      <div class="table-wrap sticky" tabindex="0">
         <table class="hover" id="route-table">
           <thead>
             <tr><th>Route</th><th>Operator</th><th>Status</th><th class="num">TPS</th><th class="num">Submitted</th><th class="num">Delivered</th><th class="num">DLR p95</th><th></th></tr>
@@ -420,7 +420,7 @@
           <blockquote>Measure twice, route once.</blockquote>
         </div>
       </div>
-<pre><code># JetBrains Mono, weight 450
+<pre tabindex="0"><code># JetBrains Mono, weight 450
 $ smppctl bind status --route OA-02
 OA-02  degraded  window=10  inflight=10  dlr_p95=94.0s</code></pre>
     </section>
