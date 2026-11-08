@@ -25,6 +25,7 @@ import base64
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 
@@ -52,6 +53,26 @@ TEXT_FONTS = [
 
 # ---------- fonts (optional step) ----------
 
+def need_tools():
+    if not shutil.which("pyftsubset"):
+        sys.exit("pyftsubset not found. Fonts and icons need fonttools and brotli: pip install fonttools brotli")
+
+
+def read_text(path):
+    with open(path, encoding="utf-8") as fh:
+        return fh.read()
+
+
+def read_bytes(path):
+    with open(path, "rb") as fh:
+        return fh.read()
+
+
+def write_text(path, text):
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(text)
+
+
 def subset(src, out, unicodes=None, glyph_unicodes=None, features=LAYOUT_FEATURES):
     args = ["pyftsubset", src, f"--output-file={out}", "--flavor=woff2",
             f"--layout-features={features}", "--no-hinting", "--desubroutinize"]
@@ -64,7 +85,7 @@ def subset(src, out, unicodes=None, glyph_unicodes=None, features=LAYOUT_FEATURE
 
 def read_icons():
     icons = []
-    with open(os.path.join(ROOT, "tools", "icons.txt")) as fh:
+    with open(os.path.join(ROOT, "tools", "icons.txt"), encoding="utf-8") as fh:
         group = ""
         for line in fh:
             line = line.strip()
@@ -114,8 +135,7 @@ def build_icons(symbols):
     subset(symbols, os.path.join(SRC, "dry-icons.woff2"), glyph_unicodes=codes, features="")
 
     data = [{"group": g, "name": a, "code": f"{by_name[n]:X}", "glyph": n} for g, a, n in icons]
-    with open(os.path.join(DIST, "icons.json"), "w") as fh:
-        json.dump(data, fh, indent=1)
+    write_text(os.path.join(DIST, "icons.json"), json.dumps(data, indent=1))
     print(f"icons: {len(icons)} icons")
 
 
@@ -143,22 +163,20 @@ def minify(css):
 
 
 def write(name, text):
-    path = os.path.join(DIST, name)
-    with open(path, "w") as fh:
-        fh.write(text if text.endswith("\n") else text + "\n")
+    write_text(os.path.join(DIST, name), text if text.endswith("\n") else text + "\n")
 
 
 def build_css():
     os.makedirs(DIST, exist_ok=True)
-    core = open(os.path.join(SRC, "dry.css")).read()
+    core = read_text(os.path.join(SRC, "dry.css"))
 
-    font = open(os.path.join(SRC, "dry-icons.woff2"), "rb").read()
+    font = read_bytes(os.path.join(SRC, "dry-icons.woff2"))
     if len(font) > EMBED_LIMIT:
         sys.exit(f"icon font is {len(font)} bytes; over the {EMBED_LIMIT} byte embed limit")
     face = ("@font-face {\n  font-family: \"DryIcons\";\n  font-display: block;\n"
             f"  src: url(data:font/woff2;base64,{base64.b64encode(font).decode()}) format(\"woff2\");\n"
             "  unicode-range: U+F0000-F1FFF;\n}")
-    icons = open(os.path.join(SRC, "dry.icons.css")).read().replace("/*@@ICON_FONT@@*/", face)
+    icons = read_text(os.path.join(SRC, "dry.icons.css")).replace("/*@@ICON_FONT@@*/", face)
 
     write("dry.css", core)
     write("dry.min.css", minify(core))
@@ -169,7 +187,7 @@ def build_css():
 # ---------- icon cheat sheet ----------
 
 def build_cheatsheet():
-    data = json.load(open(os.path.join(DIST, "icons.json")))
+    data = json.loads(read_text(os.path.join(DIST, "icons.json")))
     rows, group = [], None
     for d in data:
         if d["group"] != group:
@@ -186,17 +204,20 @@ def build_cheatsheet():
         path = os.path.join(ROOT, page)
         if not os.path.exists(path):
             continue
-        html = open(path).read()
-        html = re.sub(r"(<!--@@ICONS-->).*?(<!--@@/ICONS-->)",
-                      lambda m: m.group(1) + "\n" + "\n".join(rows) + "\n      " + m.group(2),
-                      html, flags=re.S)
-        open(path, "w").write(html)
+        html = read_text(path)
+        html, count = re.subn(r"(<!--@@ICONS-->).*?(<!--@@/ICONS-->)",
+                              lambda m: m.group(1) + "\n" + "\n".join(rows) + "\n      " + m.group(2),
+                              html, flags=re.S)
+        if count != 1:
+            print(f"warning: {page} has {count} icon markers (<!--@@ICONS--> ... <!--@@/ICONS-->), expected 1; left unchanged", file=sys.stderr)
+            continue
+        write_text(path, html)
 
 
 def report():
     import gzip
     for name in ("dry.css", "dry.min.css", "dry.icons.css", "dry.icons.min.css"):
-        raw = open(os.path.join(DIST, name), "rb").read()
+        raw = read_bytes(os.path.join(DIST, name))
         print(f"dist/{name}: {len(raw)/1024:.1f} KB, {len(gzip.compress(raw, 9))/1024:.1f} KB gzipped")
 
 
@@ -205,6 +226,7 @@ def main():
     if args and args[0] == "--fonts":
         if len(args) not in (2, 3):
             sys.exit(__doc__)
+        need_tools()
         build_fonts(args[1])
         if len(args) == 3:
             build_icons(args[2])
@@ -216,4 +238,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BrokenPipeError:   # output piped into head and the like
+        sys.stderr.close()
