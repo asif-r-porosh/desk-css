@@ -183,7 +183,7 @@
   input, select, textarea, button { font: inherit; color: inherit; }
   label { display: block; font-size: var(--fs-sm); font-weight: var(--w-bold); margin-bottom: var(--s-1); }
   label:has(> input:is([type="checkbox"], [type="radio"])) {
-    display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-md); font-weight: var(--w-normal); margin-bottom: var(--s-2);
+    display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-md); font-weight: var(--w-normal); margin-bottom: var(--s-2); min-height: 24px;
   }
   :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"], [type="color"],
          [type="submit"], [type="button"], [type="reset"], [type="image"]), select, textarea) {
