@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mailbox, a dry.css inbox template</title>
+<link rel="stylesheet" href="../dist/dry.css">
+<link rel="stylesheet" href="../dist/dry.icons.css">
+<style>
+  /* Inbox layout. dry.css has no list-plus-reader pattern yet, so these rules stay in the template.
+     Reading pane: a message shows when its id is the URL target (:target), no JavaScript.
+     Panes: wide (70rem and up) shows folders, list and message; narrower shows the list or the message. */
+  .inbox { --sel: color-mix(in srgb, var(--accent) 12%, transparent); display: grid; gap: var(--s-4); grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .inbox .msg { display: none; margin-bottom: 0; }
+  .inbox .msg:target { display: block; }
+  .inbox .back { display: inline-flex; }
+  .inbox:not(:has(.msg:target)) .reader { display: none; }
+  .inbox:has(.msg:target) .list { display: none; }
+  @media (width >= 70rem) {
+    .inbox { grid-template-columns: minmax(19rem, 26rem) minmax(0, 1fr); }
+    .inbox:not(:has(.msg:target)) .reader { display: block; }
+    .inbox:not(:has(.msg:target)) .msg:first-of-type { display: block; }
+    .inbox:has(.msg:target) .list { display: block; }
+    .inbox:not(:has(.msg:target)) tbody tr:first-child { background: var(--sel); }
+    .inbox .back { display: none; }
+  }
+  .inbox:has(#m1:target) tbody tr:has(a[href="#m1"]) { background: var(--sel); }
+  .inbox:has(#m2:target) tbody tr:has(a[href="#m2"]) { background: var(--sel); }
+  .inbox:has(#m3:target) tbody tr:has(a[href="#m3"]) { background: var(--sel); }
+  .inbox:has(#m4:target) tbody tr:has(a[href="#m4"]) { background: var(--sel); }
+  .inbox:has(#m5:target) tbody tr:has(a[href="#m5"]) { background: var(--sel); }
+  .inbox:has(#m6:target) tbody tr:has(a[href="#m6"]) { background: var(--sel); }
+  .inbox:has(#m7:target) tbody tr:has(a[href="#m7"]) { background: var(--sel); }
+  .inbox:has(#m8:target) tbody tr:has(a[href="#m8"]) { background: var(--sel); }
+  .inbox:has(#m9:target) tbody tr:has(a[href="#m9"]) { background: var(--sel); }
+  .inbox:has(#m10:target) tbody tr:has(a[href="#m10"]) { background: var(--sel); }
+  .inbox:has(#m11:target) tbody tr:has(a[href="#m11"]) { background: var(--sel); }
+  .inbox:has(#m12:target) tbody tr:has(a[href="#m12"]) { background: var(--sel); }
+  /* list rows */
+  .list td.chk { width: 1%; padding-inline: var(--s-2) 0; }
+  .list td.chk:first-child { padding-left: var(--s-3); }
+  .list td.item { width: 100%; max-width: 0; }
+  .list td.item a { --gap: .1rem; color: inherit; text-decoration: none; }
+  .list tbody tr { cursor: pointer; }
+  .list .card > header > .row { margin-bottom: 0; }
+  .list .card > table { margin-bottom: 0; }
+  .list .card > table + footer { margin-top: 0; }
+  .reader h3 { margin: 0 0 var(--s-2); font-size: var(--fs-xl); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="ghost icon narrow-only" popovertarget="side" aria-label="Menu"><span class="burger"></span></button>
+  <a class="brand" href="#list">&#xF01EE; Mailbox</a>
+  <div class="row nowrap push">
+    <button class="ghost icon" id="density-btn" aria-label="Toggle compact density" data-tip="Compact">&#xF0278;</button>
+    <button class="ghost icon" id="theme-btn" aria-label="Toggle light and dark" data-tip="Theme">&#xF0594;</button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="side" popover>
+    <nav class="vertical">
+      <h6>Folders</h6>
+      <ul>
+        <li><a href="#list" aria-current="page">&#xF0687; Inbox <span class="badge primary push">3</span></a></li>
+        <li><a href="#list">&#xF04CE; Starred</a></li>
+        <li><a href="#list">&#xF048A; Sent</a></li>
+        <li><a href="#list">&#xF03EB; Drafts <span class="badge push">2</span></a></li>
+        <li><a href="#list">&#xF003C; Archive</a></li>
+        <li><a href="#list">&#xF01B4; Trash</a></li>
+      </ul>
+      <h6>Labels</h6>
+      <ul>
+        <li><a href="#list">&#xF04F9; Work</a></li>
+        <li><a href="#list">&#xF04F9; Personal</a></li>
+        <li><a href="#list">&#xF04F9; Receipts</a></li>
+        <li><a href="#list">&#xF04F9; Updates</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <div class="stack">
+      <div class="row between">
+        <div class="group">
+          <input type="search" placeholder="Search mail" aria-label="Search mail">
+          <button class="icon" aria-label="Search">&#xF0349;</button>
+        </div>
+        <button class="primary" commandfor="compose" command="show-modal">&#xF03EB; Compose</button>
+      </div>
+
+      <div class="inbox">
+        <section class="list" id="list">
+          <div class="tabs">
+            <a href="#list" aria-current="page">All</a>
+            <a href="#list">Unread <span class="badge">3</span></a>
+            <a href="#list">Starred</a>
+          </div>
+          <div class="card">
+            <header>
+              <div class="row nowrap">
+                <input type="checkbox" aria-label="Select all messages">
+                <button class="ghost icon sm" aria-label="Archive selected">&#xF003C;</button>
+                <button class="ghost icon sm" aria-label="Delete selected">&#xF01B4;</button>
+                <button class="ghost icon sm" aria-label="Mark selected as read">&#xF012C;</button>
+              </div>
+              <button class="ghost icon sm" aria-label="Refresh">&#xF0450;</button>
+            </header>
+            <table class="hover">
+              <tbody>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Mira Chowdhury"></td>
+            <td class="chk"><button class="ghost icon sm text-warn" aria-pressed="true" aria-label="Starred">&#xF04CE;</button></td>
+            <td class="item"><a class="stack" href="#m1">
+              <div class="row nowrap between"><div class="truncate"><strong>Mira Chowdhury</strong></div><div class="text-xs muted">&#xF03E2; 10:42</div></div>
+              <div class="truncate"><strong>Notes from Tuesday&#x27;s planning</strong></div>
+              <div class="truncate text-sm muted">Thanks for joining on Tuesday. The notes are attached; the short version is below.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Harbor Lane Billing"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m2">
+              <div class="row nowrap between"><div class="truncate"><strong>Harbor Lane Billing</strong></div><div class="text-xs muted">&#xF03E2; 09:15</div></div>
+              <div class="truncate"><strong>Invoice 2041 is ready</strong></div>
+              <div class="truncate text-sm muted">Invoice 2041 for October is ready. The amount is due within 14 days.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Tanvir Alam"></td>
+            <td class="chk"><button class="ghost icon sm text-warn" aria-pressed="true" aria-label="Starred">&#xF04CE;</button></td>
+            <td class="item"><a class="stack" href="#m3">
+              <div class="row nowrap between"><div class="truncate">Tanvir Alam</div><div class="text-xs muted">08:03</div></div>
+              <div class="truncate">Weekend hike?</div>
+              <div class="truncate text-sm muted">The weather looks good for Friday. A few of the group are thinking about the ridge trail, roughly four hours round trip.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Fieldnote"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m4">
+              <div class="row nowrap between"><div class="truncate">Fieldnote</div><div class="text-xs muted">Yesterday</div></div>
+              <div class="truncate">Your weekly summary</div>
+              <div class="truncate text-sm muted">Twelve notes added this week, three shared, and two archived. The most active notebook was Home projects.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Ruhi Sen"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m5">
+              <div class="row nowrap between"><div class="truncate"><strong>Ruhi Sen</strong></div><div class="text-xs muted">&#xF03E2; Yesterday</div></div>
+              <div class="truncate"><strong>Re: Draft for review</strong></div>
+              <div class="truncate text-sm muted">Updated the draft with the comments from Monday. Changes are tracked in the attached file.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Library Desk"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m6">
+              <div class="row nowrap between"><div class="truncate">Library Desk</div><div class="text-xs muted">Mon</div></div>
+              <div class="truncate">Hold ready for pickup</div>
+              <div class="truncate text-sm muted">The book on hold is ready at the front desk. It will be kept for seven days.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Omar Faruk"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m7">
+              <div class="row nowrap between"><div class="truncate">Omar Faruk</div><div class="text-xs muted">Mon</div></div>
+              <div class="truncate">Lunch on Thursday</div>
+              <div class="truncate text-sm muted">Free on Thursday around 1? There is a new place near the station with good noodles.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Example Co Team"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m8">
+              <div class="row nowrap between"><div class="truncate">Example Co Team</div><div class="text-xs muted">Sun</div></div>
+              <div class="truncate">Welcome aboard</div>
+              <div class="truncate text-sm muted">The account is set up and ready. A short tour of the main screens is in the help section.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Nadia Rahman"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m9">
+              <div class="row nowrap between"><div class="truncate"><strong>Nadia Rahman</strong></div><div class="text-xs muted">&#xF03E2; Sat</div></div>
+              <div class="truncate"><strong>Photos from the trip</strong></div>
+              <div class="truncate text-sm muted">Finally sorted the photos. Eighty-four of the best are in the attached archive, roughly 18 MB.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Meter Services"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m10">
+              <div class="row nowrap between"><div class="truncate">Meter Services</div><div class="text-xs muted">Fri</div></div>
+              <div class="truncate">Meter reading due this week</div>
+              <div class="truncate text-sm muted">The next meter reading is due by Sunday. A reading can be submitted online or by replying with the numbers shown on the display.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Sabrina Kabir"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m11">
+              <div class="row nowrap between"><div class="truncate">Sabrina Kabir</div><div class="text-xs muted">Thu</div></div>
+              <div class="truncate">Quick question about the schedule</div>
+              <div class="truncate text-sm muted">Does the Thursday slot still work for the walkthrough? Moving it to Friday would help with the review that morning.</div>
+            </a></td>
+          </tr>
+          <tr>
+            <td class="chk"><input type="checkbox" aria-label="Select message from Sunrise Studio"></td>
+            <td class="chk"><button class="ghost icon sm muted" aria-pressed="false" aria-label="Not starred">&#xF04D2;</button></td>
+            <td class="item"><a class="stack" href="#m12">
+              <div class="row nowrap between"><div class="truncate">Sunrise Studio</div><div class="text-xs muted">Wed</div></div>
+              <div class="truncate">Class timetable changes</div>
+              <div class="truncate text-sm muted">From next week the evening class moves to 6:30. Morning classes stay as they are.</div>
+            </a></td>
+          </tr>
+              </tbody>
+            </table>
+            <footer class="row between">
+              <span class="text-sm muted">1&ndash;12 of 48</span>
+              <ul class="pagination">
+                <li><a href="#list" aria-label="Previous page">&#xF0141;</a></li>
+                <li><a href="#list" aria-current="page">1</a></li>
+                <li><a href="#list">2</a></li>
+                <li><a href="#list">3</a></li>
+                <li><a href="#list">4</a></li>
+                <li><a href="#list" aria-label="Next page">&#xF0142;</a></li>
+              </ul>
+            </footer>
+          </div>
+        </section>
+
+        <div class="reader">
+      <article class="msg card" id="m1">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Notes from Tuesday&#x27;s planning</h3>
+          <span class="badge info">Work</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Mira Chowdhury</strong> <span class="muted">&lt;mira@example.org&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Sat 8 Nov, 10:42</p>
+        </div>
+        <p>Thanks for joining on Tuesday. The notes are attached; the short version is below.</p><ul><li>Ship the new onboarding screens first, then the settings rework.</li><li>Freeze the copy on Friday.</li><li>Review the schedule again next Tuesday.</li></ul><p>Reply here with anything that was missed.</p>
+        <div class="row">
+          <a class="btn sm" href="#m1">&#xF03E2; planning-notes.pdf <span class="muted">240 KB</span></a>
+        </div>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m2">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Invoice 2041 is ready</h3>
+          <span class="badge ok">Receipts</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Harbor Lane Billing</strong> <span class="muted">&lt;billing@harborlane.example&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Sat 8 Nov, 09:15</p>
+        </div>
+        <p>Invoice 2041 for October is ready. The amount is due within 14 days.</p><p>Payment details and the full breakdown are in the attached PDF. Questions about a line item can be sent to this address.</p>
+        <div class="row">
+          <a class="btn sm" href="#m2">&#xF03E2; invoice-2041.pdf <span class="muted">240 KB</span></a>
+        </div>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m3">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Weekend hike?</h3>
+          <span class="badge warn">Personal</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Tanvir Alam</strong> <span class="muted">&lt;tanvir@example.net&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Sat 8 Nov, 08:03</p>
+        </div>
+        <p>The weather looks good for Friday. A few of the group are thinking about the ridge trail, roughly four hours round trip.</p><p>Meeting at the trailhead at 7:30. Bring water and a light jacket.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m4">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Your weekly summary</h3>
+          <span class="badge info">Updates</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Fieldnote</strong> <span class="muted">&lt;hello@fieldnote.example&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Fri 7 Nov, 18:00</p>
+        </div>
+        <p>Twelve notes added this week, three shared, and two archived. The most active notebook was Home projects.</p><p>Weekly summaries can be turned off in Settings.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m5">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Re: Draft for review</h3>
+          <span class="badge info">Work</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Ruhi Sen</strong> <span class="muted">&lt;ruhi@example.org&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Fri 7 Nov, 15:20</p>
+        </div>
+        <p>Updated the draft with the comments from Monday. Changes are tracked in the attached file.</p><p>The second section still needs a closing paragraph. A suggestion would help.</p><p>Deadline for the final version is next Wednesday.</p>
+        <div class="row">
+          <a class="btn sm" href="#m5">&#xF03E2; draft-v3.docx <span class="muted">86 KB</span></a>
+        </div>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m6">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Hold ready for pickup</h3>
+          
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Library Desk</strong> <span class="muted">&lt;desk@cityreads.example&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Mon 3 Nov, 11:05</p>
+        </div>
+        <p>The book on hold is ready at the front desk. It will be kept for seven days.</p><p>Bring a library card or the number from this message.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m7">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Lunch on Thursday</h3>
+          <span class="badge warn">Personal</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Omar Faruk</strong> <span class="muted">&lt;omar@example.net&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Mon 3 Nov, 09:40</p>
+        </div>
+        <p>Free on Thursday around 1? There is a new place near the station with good noodles.</p><p>Say the word and a table gets booked.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m8">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Welcome aboard</h3>
+          <span class="badge info">Updates</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Example Co Team</strong> <span class="muted">&lt;team@example.com&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Sun 2 Nov, 20:12</p>
+        </div>
+        <p>The account is set up and ready. A short tour of the main screens is in the help section.</p><p>Reply to this message with any question during the first week.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m9">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Photos from the trip</h3>
+          <span class="badge warn">Personal</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Nadia Rahman</strong> <span class="muted">&lt;nadia@example.org&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Sat 1 Nov, 19:30</p>
+        </div>
+        <p>Finally sorted the photos. Eighty-four of the best are in the attached archive, roughly 18 MB.</p><p>The sunset ones near the end came out well.</p>
+        <div class="row">
+          <a class="btn sm" href="#m9">&#xF03E2; trip-photos.zip <span class="muted">18 MB</span></a>
+        </div>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m10">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Meter reading due this week</h3>
+          <span class="badge ok">Receipts</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Meter Services</strong> <span class="muted">&lt;notice@metering.example&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Fri 31 Oct, 08:00</p>
+        </div>
+        <p>The next meter reading is due by Sunday. A reading can be submitted online or by replying with the numbers shown on the display.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m11">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Quick question about the schedule</h3>
+          <span class="badge info">Work</span>
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Sabrina Kabir</strong> <span class="muted">&lt;sabrina@example.org&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Thu 30 Oct, 16:45</p>
+        </div>
+        <p>Does the Thursday slot still work for the walkthrough? Moving it to Friday would help with the review that morning.</p><p>Either day is fine; a reply by tomorrow is enough.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+      <article class="msg card" id="m12">
+        <header>
+          <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
+          <div class="row nowrap push">
+            <button class="ghost icon sm" aria-label="Archive">&#xF003C;</button>
+            <button class="ghost icon sm" aria-label="Delete">&#xF01B4;</button>
+            <button class="ghost icon sm" aria-label="Mark as unread">&#xF01EE;</button>
+            <button class="ghost icon sm" aria-label="More">&#xF01D8;</button>
+          </div>
+        </header>
+        <div class="row between top">
+          <h3>Class timetable changes</h3>
+          
+        </div>
+        <div class="row nowrap between top">
+          <p class="text-sm"><strong>Sunrise Studio</strong> <span class="muted">&lt;info@sunrisestudio.example&gt;</span><br><span class="muted">to me</span></p>
+          <p class="text-sm muted nowrap">Wed 29 Oct, 12:10</p>
+        </div>
+        <p>From next week the evening class moves to 6:30. Morning classes stay as they are.</p><p>The updated timetable is on the website.</p>
+        <footer>
+          <button>&#xF030D; Reply</button>
+          <button>&#xF0734; Forward</button>
+        </footer>
+      </article>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<dialog id="compose">
+  <form method="dialog">
+    <header>
+      <h4>New message</h4>
+      <button class="ghost icon sm" value="cancel" formnovalidate aria-label="Close">&#xF0156;</button>
+    </header>
+    <div class="field">
+      <label for="c-to">To</label>
+      <input id="c-to" type="email" placeholder="name@example.com" required>
+    </div>
+    <div class="field">
+      <label for="c-subject">Subject</label>
+      <input id="c-subject">
+    </div>
+    <div class="field">
+      <label for="c-body">Message</label>
+      <textarea id="c-body" rows="8"></textarea>
+    </div>
+    <footer>
+      <button class="ghost" value="cancel" formnovalidate>Discard</button>
+      <button class="primary" value="send">&#xF048A; Send</button>
+    </footer>
+  </form>
+</dialog>
+
+<script>
+  // The inbox itself needs no script. These two buttons only switch the page settings.
+  const root = document.documentElement;
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = (root.dataset.theme || (dark ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark';
+  });
+  document.getElementById('density-btn').addEventListener('click', () => {
+    if (root.dataset.density === 'compact') delete root.dataset.density; else root.dataset.density = 'compact';
+  });
+</script>
+</body>
+</html>

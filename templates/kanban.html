@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board, a dry.css kanban template</title>
+<link rel="stylesheet" href="../dist/dry.css">
+<link rel="stylesheet" href="../dist/dry.icons.css">
+<style>
+  /* Board pieces dry.css does not have yet: the scrolling column row, the column surface and an initials avatar. */
+  main { min-width: 0; }
+  .board { display: flex; gap: var(--s-4); align-items: flex-start; overflow-x: auto; padding-bottom: var(--s-3); scroll-snap-type: x proximity; }
+  .col { flex: 1 0 16rem; max-width: 24rem; scroll-snap-align: start; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-3); }
+  .col > header { margin-bottom: var(--s-3); padding-inline: var(--s-1); }
+  .col > header h4 { margin: 0; font-size: var(--fs-md); }
+  .col .card { padding: var(--s-3); margin: 0; }
+  .col .card .stack, .col .card .row { margin-bottom: 0; }
+  .col .card > * + * { margin-top: var(--s-3); }
+  .col .card h5 { margin: 0; font-size: var(--fs-md); font-weight: var(--w-bold); line-height: 1.3; }
+  .col .card .row.top > .ghost { margin: calc(-1 * var(--s-1)) calc(-1 * var(--s-1)) 0 0; }
+  .avatar { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; flex: none; border-radius: 50%;
+            background: var(--accent-bg); color: var(--accent-ink); font-size: var(--fs-xs); font-weight: var(--w-bold); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="ghost icon narrow-only" popovertarget="side" aria-label="Menu"><span class="burger"></span></button>
+  <a class="brand" href="#top">&#xF056E; Example Board</a>
+  <div class="row nowrap push">
+    <button class="ghost icon" id="density-btn" aria-label="Toggle compact density" data-tip="Compact">&#xF0278;</button>
+    <button class="ghost icon" id="theme-btn" aria-label="Toggle light and dark" data-tip="Theme">&#xF0594;</button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="side" popover>
+    <nav class="vertical">
+      <h6>Boards</h6>
+      <ul>
+        <li><a href="#top" aria-current="page">&#xF056E; Product</a></li>
+        <li><a href="#top">&#xF056E; Website</a></li>
+        <li><a href="#top">&#xF056E; Research</a></li>
+      </ul>
+      <h6>Views</h6>
+      <ul>
+        <li><a href="#top">&#xF0279; List</a></li>
+        <li><a href="#top">&#xF00ED; Calendar</a></li>
+        <li><a href="#top">&#xF0849; People</a></li>
+        <li><a href="#top">&#xF0493; Settings</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main id="top">
+    <div class="stack">
+      <ol class="breadcrumb">
+        <li><a href="#top">Boards</a></li>
+        <li aria-current="page">Product</li>
+      </ol>
+      <div class="row between">
+        <h1>Product board</h1>
+        <div class="row">
+          <div class="group">
+            <input type="search" placeholder="Search cards" aria-label="Search cards">
+            <button class="icon" aria-label="Search">&#xF0349;</button>
+          </div>
+          <details class="dropdown end">
+            <summary>&#xF0232; Filter</summary>
+            <ul>
+              <li><a href="#top">All cards</a></li>
+              <li><a href="#top">Assigned to me</a></li>
+              <li><a href="#top">Due this week</a></li>
+            </ul>
+          </details>
+          <button class="primary" commandfor="new-card" command="show-modal">&#xF0415; New card</button>
+        </div>
+      </div>
+
+      <div class="board">
+      <section class="col" aria-label="Backlog">
+        <header class="row nowrap between">
+          <h4>Backlog <span class="badge">4</span></h4>
+          <button class="ghost icon sm" aria-label="Add a card to Backlog" commandfor="new-card" command="show-modal">&#xF0415;</button>
+        </header>
+        <div class="stack">
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Write the onboarding checklist</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge info">Docs</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 14</span><span class="text-xs muted nowrap">&#xF0369; 2</span></div>
+            <span class="avatar" title="MC">MC</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Pick a date for the user interviews</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge warn">Research</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 18</span></div>
+            <span class="avatar" title="TA">TA</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Review the icon set for gaps</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge ">Design</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0369; 1</span></div>
+            <span class="avatar" title="RS">RS</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Plan the winter release notes</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge info">Docs</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Dec 2</span><span class="text-xs muted nowrap">&#xF03E2; 1</span></div>
+            <span class="avatar" title="MC">MC</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="col" aria-label="In progress">
+        <header class="row nowrap between">
+          <h4>In progress <span class="badge">3</span></h4>
+          <button class="ghost icon sm" aria-label="Add a card to In progress" commandfor="new-card" command="show-modal">&#xF0415;</button>
+        </header>
+        <div class="stack">
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Rebuild the settings screen</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge ">Design</span>
+          <div class="stack" style="--gap:.25rem">
+            <div class="row nowrap between text-xs muted"><span>&#xF012C; Checklist</span><span>3/5</span></div>
+            <progress max="5" value="3" aria-label="Checklist progress"></progress>
+          </div>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 12</span><span class="text-xs muted nowrap">&#xF0369; 5</span><span class="text-xs muted nowrap">&#xF03E2; 2</span></div>
+            <span class="avatar" title="RS">RS</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Fix the export timeout</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge danger">Bug</span>
+          <div class="stack" style="--gap:.25rem">
+            <div class="row nowrap between text-xs muted"><span>&#xF012C; Checklist</span><span>1/4</span></div>
+            <progress max="4" value="1" aria-label="Checklist progress"></progress>
+          </div>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 10</span><span class="text-xs muted nowrap">&#xF0369; 8</span><span class="text-xs muted nowrap">&#xF03E2; 1</span></div>
+            <span class="avatar" title="OF">OF</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Set up the weekly summary email</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge ok">Feature</span>
+          <div class="stack" style="--gap:.25rem">
+            <div class="row nowrap between text-xs muted"><span>&#xF012C; Checklist</span><span>2/3</span></div>
+            <progress max="3" value="2" aria-label="Checklist progress"></progress>
+          </div>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 15</span><span class="text-xs muted nowrap">&#xF0369; 1</span></div>
+            <span class="avatar" title="TA">TA</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="col" aria-label="Review">
+        <header class="row nowrap between">
+          <h4>Review <span class="badge">2</span></h4>
+          <button class="ghost icon sm" aria-label="Add a card to Review" commandfor="new-card" command="show-modal">&#xF0415;</button>
+        </header>
+        <div class="stack">
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Update the pricing page copy</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge info">Docs</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 9</span><span class="text-xs muted nowrap">&#xF0369; 3</span></div>
+            <span class="avatar" title="NR">NR</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Add keyboard shortcuts to the table</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge ok">Feature</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 11</span><span class="text-xs muted nowrap">&#xF0369; 6</span></div>
+            <span class="avatar" title="OF">OF</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="col" aria-label="Done">
+        <header class="row nowrap between">
+          <h4>Done <span class="badge">3</span></h4>
+          <button class="ghost icon sm" aria-label="Add a card to Done" commandfor="new-card" command="show-modal">&#xF0415;</button>
+        </header>
+        <div class="stack">
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Move the docs to the new layout</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge info">Docs</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 3</span><span class="text-xs muted nowrap">&#xF0369; 4</span></div>
+            <span class="avatar" title="MC">MC</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Fix the login redirect loop</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge danger">Bug</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Nov 5</span><span class="text-xs muted nowrap">&#xF0369; 2</span></div>
+            <span class="avatar" title="OF">OF</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="row nowrap between top">
+            <h5>Choose a font for the app</h5>
+            <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
+          </div>
+          <span class="badge ">Design</span>
+          <div class="row nowrap between">
+            <div class="row nowrap"><span class="text-xs muted nowrap">&#xF0150; Oct 28</span><span class="text-xs muted nowrap">&#xF0369; 9</span></div>
+            <span class="avatar" title="RS">RS</span>
+          </div>
+        </article>
+        </div>
+      </section>
+      </div>
+    </div>
+  </main>
+</div>
+
+<dialog id="new-card">
+  <form method="dialog">
+    <header>
+      <h4>New card</h4>
+      <button class="ghost icon sm" value="cancel" formnovalidate aria-label="Close">&#xF0156;</button>
+    </header>
+    <div class="field">
+      <label for="k-title">Title</label>
+      <input id="k-title" required>
+    </div>
+    <div class="grid cols-2">
+      <div class="field">
+        <label for="k-col">Column</label>
+        <select id="k-col"><option>Backlog</option><option>In progress</option><option>Review</option><option>Done</option></select>
+      </div>
+      <div class="field">
+        <label for="k-due">Due</label>
+        <input id="k-due" type="date">
+      </div>
+    </div>
+    <footer>
+      <button class="ghost" value="cancel" formnovalidate>Cancel</button>
+      <button class="primary" value="add">Add card</button>
+    </footer>
+  </form>
+</dialog>
+
+<script>
+  // Cards do not move in this template; that needs script. Only the two header buttons use it, for page settings.
+  const root = document.documentElement;
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = (root.dataset.theme || (dark ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark';
+  });
+  document.getElementById('density-btn').addEventListener('click', () => {
+    if (root.dataset.density === 'compact') delete root.dataset.density; else root.dataset.density = 'compact';
+  });
+</script>
+</body>
+</html>
