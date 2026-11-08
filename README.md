@@ -66,6 +66,17 @@ Each icon takes the size and color of the surrounding text. The full list, with 
 
 The icons are from [Material Design Icons](https://github.com/Templarian/MaterialDesign) by Pictogrammers (Apache 2.0), taken through [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) Symbols (MIT). Only the 170 listed glyphs are included.
 
+## Templates
+
+`templates/` holds single-page examples. Each links `../dist/dry.css`, so it opens straight from a clone.
+
+- `inbox.html`: three-pane mailbox; messages switch with plain CSS (`:target`).
+- `dashboard.html`: stat cards, a bar chart in CSS, a table with filter and pagination, an activity list.
+- `kanban.html`: a board with scrolling columns and a dialog for new cards.
+- `showcase.html`: every component, inside an app shell.
+
+All data is invented. Apart from the showcase, the pages use script only for the theme and density buttons.
+
 ## Overrides
 
 All rules live in a cascade layer named `dry`. CSS written outside a layer always wins, so `!important` is never needed. Every size, space and color is a CSS variable, changeable on `:root`.
