@@ -854,11 +854,20 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
     root.dataset.theme = (root.dataset.theme || (pref.matches ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark';
   });
   $('density-btn').addEventListener('click', e => {
+    // density changes every rem, so the page height changes; keep the same content under the top bar
+    const line = document.querySelector('.topbar').offsetHeight + 4;
+    const el = [...document.querySelectorAll('main section > *')].find(x => x.getBoundingClientRect().bottom > line);
+    const r = el && el.getBoundingClientRect();
+    const frac = r ? (line - r.top) / (r.height || 1) : 0;
     const on = root.dataset.density !== 'compact';
     if (on) root.dataset.density = 'compact'; else delete root.dataset.density;
     e.currentTarget.classList.toggle('primary', on);
     e.currentTarget.classList.toggle('ghost', !on);
     fillTokens();
+    if (el) {
+      const n = el.getBoundingClientRect();
+      scrollBy(0, n.top + frac * n.height - line);
+    }
   });
   document.querySelectorAll('#accent-menu button').forEach(b => b.addEventListener('click', () => {
     if (b.dataset.accent) root.dataset.accent = b.dataset.accent; else delete root.dataset.accent;
