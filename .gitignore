@@ -1,0 +1,18 @@
+# Working notes and template pages, kept out of the repo
+BACKLOG.md
+templates/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon?
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+
+# Python
+__pycache__/

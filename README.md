@@ -1,0 +1,107 @@
+<p align="center"><img src="assets/banner.png" alt="dry.css"></p>
+
+# dry.css
+
+A small CSS library for everyday tools: admin screens, dashboards, internal apps.
+
+Many CSS frameworks are tuned for marketing pages, with large buttons, generous padding and big type. On a laptop, a data-heavy screen built with them feels zoomed in. Classless libraries stay small and quiet, but they style bare HTML elements only; layouts such as a sidebar, or components such as status badges, still need custom CSS.
+
+dry.css sits in between. Plain HTML looks right with no classes. A short list of classes covers the rest. No JavaScript, no build step to use it, no 12-column grid.
+
+## Features
+
+- Plain HTML styled out of the box: text, tables, forms, dialogs, details.
+- A small set of components: buttons, cards, alerts, badges, tabs, dropdowns, toasts, stats.
+- An app shell with a sidebar that becomes a drawer on phones.
+- Hanken Grotesk for text and JetBrains Mono for code, bundled; serif text uses the system font.
+- Light and dark mode, following the system setting by default.
+- One accent color, from which the related shades are derived.
+- 170 optional icons, typed straight into text.
+
+About 7 KB over the wire, plus fonts.
+
+## Getting started
+
+Copy `dry.min.css` and the `fonts/` folder from `dist/` into the project, side by side. For icons, add `dry.icons.min.css` as well.
+
+```html
+<link rel="stylesheet" href="dry.min.css">
+<link rel="stylesheet" href="dry.icons.min.css">
+```
+
+The readable `dry.css` and `dry.icons.css` in `dist/` hold the same rules, with comments and whitespace kept.
+
+`docs.html` shows every element and component next to the markup.
+
+## Settings
+
+Three attributes on `<html>` change the whole page. Without these attributes, the defaults apply.
+
+```html
+<html data-theme="dark" data-density="compact" data-accent="teal">
+```
+
+- `data-theme`: `light` or `dark`. Default follows the system.
+- `data-density`: `normal` (16px text, 40px controls) or `compact` (14px text, 32px controls).
+- `data-accent`: `green`, `teal`, `purple` or `orange`. Default is blue.
+
+Any other accent color takes one line:
+
+```css
+:root { --accent: #198038; }
+```
+
+Links, buttons, focus rings, switches and tints follow the accent. Status colors (ok, warning, danger, info) do not, so a failure never looks like a success.
+
+## Icons
+
+With `dry.icons.min.css` (or `dry.icons.css`) loaded, an icon is its character code placed in text:
+
+```html
+<h2>&#xF02DC; Dashboard</h2>
+<button class="danger">&#xF01B4; Delete</button>
+```
+
+Each icon takes the size and color of the surrounding text. The full list, with search and copy, is in `docs.html`.
+
+The icons are from [Material Design Icons](https://github.com/Templarian/MaterialDesign) by Pictogrammers (Apache 2.0), taken through [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) Symbols (MIT). Only the 170 listed glyphs are included.
+
+## Overrides
+
+All rules live in a cascade layer named `dry`. CSS written outside a layer always wins, so `!important` is never needed. Every size, space and color is a CSS variable, changeable on `:root`.
+
+## Browser support
+
+Current Chrome, Edge, Firefox and Safari. dry.css relies on recent CSS (`light-dark()`, relative colors, `:has()`, popover); older browsers are not a target.
+
+## Building
+
+`dist/` is generated from `src/`. Edit `src/dry.css`, then run:
+
+```sh
+python3 tools/build.py
+```
+
+That writes the readable and minified files to `dist/` and refreshes the icon list in `docs.html`. Python 3 is the only requirement.
+
+Changing the icon set (`tools/icons.txt`) or updating the fonts needs `fonttools` and `brotli`:
+
+```sh
+python3 tools/build.py --fonts <fonts-folder> [<SymbolsNerdFont-Regular.ttf>]
+```
+
+The fonts folder holds three variable font files from the [Google Fonts repository](https://github.com/google/fonts), under these names: `HankenGrotesk[wght].ttf` and `HankenGrotesk-Italic[wght].ttf` (folder `ofl/hankengrotesk`), and `JetBrainsMono[wght].ttf` (folder `ofl/jetbrainsmono`). The build pins the weights (450 and 600) and cuts the glyphs down to Latin. The Symbols Nerd Font file is only needed to rebuild the icons.
+
+## License
+
+dry.css is released under the [MIT License](LICENSE).
+
+Fonts and icons carry their own licenses, included in `dist/fonts/`:
+
+- Hanken Grotesk: SIL Open Font License 1.1 (`LICENSE-Hanken-Grotesk.txt`).
+- JetBrains Mono: SIL Open Font License 1.1 (`LICENSE-JetBrains-Mono.txt`).
+- Material Design Icons: Apache 2.0, with the Pictogrammers notice (`LICENSE-Material-Design-Icons.txt`).
+- Nerd Fonts Symbols, the source of the icon glyphs: MIT (`LICENSE-Nerd-Fonts.txt`).
+
+---
+RnD: Used Claude Sonnet 5.5

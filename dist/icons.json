@@ -1,0 +1,1022 @@
+[
+ {
+  "group": "Navigation",
+  "name": "home",
+  "code": "F02DC",
+  "glyph": "md-home"
+ },
+ {
+  "group": "Navigation",
+  "name": "menu",
+  "code": "F035C",
+  "glyph": "md-menu"
+ },
+ {
+  "group": "Navigation",
+  "name": "close",
+  "code": "F0156",
+  "glyph": "md-close"
+ },
+ {
+  "group": "Navigation",
+  "name": "arrow-up",
+  "code": "F005D",
+  "glyph": "md-arrow_up"
+ },
+ {
+  "group": "Navigation",
+  "name": "arrow-down",
+  "code": "F0045",
+  "glyph": "md-arrow_down"
+ },
+ {
+  "group": "Navigation",
+  "name": "arrow-left",
+  "code": "F004D",
+  "glyph": "md-arrow_left"
+ },
+ {
+  "group": "Navigation",
+  "name": "arrow-right",
+  "code": "F0054",
+  "glyph": "md-arrow_right"
+ },
+ {
+  "group": "Navigation",
+  "name": "chevron-up",
+  "code": "F0143",
+  "glyph": "md-chevron_up"
+ },
+ {
+  "group": "Navigation",
+  "name": "chevron-down",
+  "code": "F0140",
+  "glyph": "md-chevron_down"
+ },
+ {
+  "group": "Navigation",
+  "name": "chevron-left",
+  "code": "F0141",
+  "glyph": "md-chevron_left"
+ },
+ {
+  "group": "Navigation",
+  "name": "chevron-right",
+  "code": "F0142",
+  "glyph": "md-chevron_right"
+ },
+ {
+  "group": "Navigation",
+  "name": "external",
+  "code": "F03CC",
+  "glyph": "md-open_in_new"
+ },
+ {
+  "group": "Navigation",
+  "name": "back",
+  "code": "F030D",
+  "glyph": "md-keyboard_backspace"
+ },
+ {
+  "group": "Navigation",
+  "name": "forward",
+  "code": "F0734",
+  "glyph": "md-arrow_right_bold"
+ },
+ {
+  "group": "Navigation",
+  "name": "more-h",
+  "code": "F01D8",
+  "glyph": "md-dots_horizontal"
+ },
+ {
+  "group": "Navigation",
+  "name": "more-v",
+  "code": "F01D9",
+  "glyph": "md-dots_vertical"
+ },
+ {
+  "group": "Actions",
+  "name": "add",
+  "code": "F0415",
+  "glyph": "md-plus"
+ },
+ {
+  "group": "Actions",
+  "name": "remove",
+  "code": "F0374",
+  "glyph": "md-minus"
+ },
+ {
+  "group": "Actions",
+  "name": "edit",
+  "code": "F03EB",
+  "glyph": "md-pencil"
+ },
+ {
+  "group": "Actions",
+  "name": "delete",
+  "code": "F01B4",
+  "glyph": "md-delete"
+ },
+ {
+  "group": "Actions",
+  "name": "save",
+  "code": "F0193",
+  "glyph": "md-content_save"
+ },
+ {
+  "group": "Actions",
+  "name": "copy",
+  "code": "F018F",
+  "glyph": "md-content_copy"
+ },
+ {
+  "group": "Actions",
+  "name": "paste",
+  "code": "F0192",
+  "glyph": "md-content_paste"
+ },
+ {
+  "group": "Actions",
+  "name": "cut",
+  "code": "F0190",
+  "glyph": "md-content_cut"
+ },
+ {
+  "group": "Actions",
+  "name": "search",
+  "code": "F0349",
+  "glyph": "md-magnify"
+ },
+ {
+  "group": "Actions",
+  "name": "filter",
+  "code": "F0232",
+  "glyph": "md-filter"
+ },
+ {
+  "group": "Actions",
+  "name": "sort",
+  "code": "F04BA",
+  "glyph": "md-sort"
+ },
+ {
+  "group": "Actions",
+  "name": "sort-asc",
+  "code": "F04BC",
+  "glyph": "md-sort_ascending"
+ },
+ {
+  "group": "Actions",
+  "name": "sort-desc",
+  "code": "F04BD",
+  "glyph": "md-sort_descending"
+ },
+ {
+  "group": "Actions",
+  "name": "refresh",
+  "code": "F0450",
+  "glyph": "md-refresh"
+ },
+ {
+  "group": "Actions",
+  "name": "undo",
+  "code": "F054C",
+  "glyph": "md-undo"
+ },
+ {
+  "group": "Actions",
+  "name": "redo",
+  "code": "F044E",
+  "glyph": "md-redo"
+ },
+ {
+  "group": "Actions",
+  "name": "download",
+  "code": "F01DA",
+  "glyph": "md-download"
+ },
+ {
+  "group": "Actions",
+  "name": "upload",
+  "code": "F0552",
+  "glyph": "md-upload"
+ },
+ {
+  "group": "Actions",
+  "name": "share",
+  "code": "F0497",
+  "glyph": "md-share_variant"
+ },
+ {
+  "group": "Actions",
+  "name": "print",
+  "code": "F042A",
+  "glyph": "md-printer"
+ },
+ {
+  "group": "Actions",
+  "name": "send",
+  "code": "F048A",
+  "glyph": "md-send"
+ },
+ {
+  "group": "Actions",
+  "name": "link",
+  "code": "F0337",
+  "glyph": "md-link"
+ },
+ {
+  "group": "Actions",
+  "name": "unlink",
+  "code": "F0338",
+  "glyph": "md-link_off"
+ },
+ {
+  "group": "Actions",
+  "name": "settings",
+  "code": "F0493",
+  "glyph": "md-cog"
+ },
+ {
+  "group": "Status",
+  "name": "check",
+  "code": "F012C",
+  "glyph": "md-check"
+ },
+ {
+  "group": "Status",
+  "name": "check-circle",
+  "code": "F05E0",
+  "glyph": "md-check_circle"
+ },
+ {
+  "group": "Status",
+  "name": "x-circle",
+  "code": "F0159",
+  "glyph": "md-close_circle"
+ },
+ {
+  "group": "Status",
+  "name": "info",
+  "code": "F02FC",
+  "glyph": "md-information"
+ },
+ {
+  "group": "Status",
+  "name": "warning",
+  "code": "F0026",
+  "glyph": "md-alert"
+ },
+ {
+  "group": "Status",
+  "name": "error",
+  "code": "F0029",
+  "glyph": "md-alert_octagon"
+ },
+ {
+  "group": "Status",
+  "name": "help",
+  "code": "F02D7",
+  "glyph": "md-help_circle"
+ },
+ {
+  "group": "Status",
+  "name": "bell",
+  "code": "F009A",
+  "glyph": "md-bell"
+ },
+ {
+  "group": "Status",
+  "name": "bell-off",
+  "code": "F009B",
+  "glyph": "md-bell_off"
+ },
+ {
+  "group": "Status",
+  "name": "spinner",
+  "code": "F0772",
+  "glyph": "md-loading"
+ },
+ {
+  "group": "Status",
+  "name": "dot",
+  "code": "F0765",
+  "glyph": "md-circle"
+ },
+ {
+  "group": "Status",
+  "name": "dot-outline",
+  "code": "F0766",
+  "glyph": "md-circle_outline"
+ },
+ {
+  "group": "Status",
+  "name": "shield",
+  "code": "F0565",
+  "glyph": "md-shield_check"
+ },
+ {
+  "group": "Status",
+  "name": "ban",
+  "code": "F073A",
+  "glyph": "md-cancel"
+ },
+ {
+  "group": "Files",
+  "name": "file",
+  "code": "F0214",
+  "glyph": "md-file"
+ },
+ {
+  "group": "Files",
+  "name": "file-text",
+  "code": "F0219",
+  "glyph": "md-file_document"
+ },
+ {
+  "group": "Files",
+  "name": "file-code",
+  "code": "F022E",
+  "glyph": "md-file_code"
+ },
+ {
+  "group": "Files",
+  "name": "file-pdf",
+  "code": "F0226",
+  "glyph": "md-file_pdf_box"
+ },
+ {
+  "group": "Files",
+  "name": "spreadsheet",
+  "code": "F021B",
+  "glyph": "md-file_excel"
+ },
+ {
+  "group": "Files",
+  "name": "image",
+  "code": "F02E9",
+  "glyph": "md-image"
+ },
+ {
+  "group": "Files",
+  "name": "folder",
+  "code": "F024B",
+  "glyph": "md-folder"
+ },
+ {
+  "group": "Files",
+  "name": "folder-open",
+  "code": "F0770",
+  "glyph": "md-folder_open"
+ },
+ {
+  "group": "Files",
+  "name": "archive",
+  "code": "F003C",
+  "glyph": "md-archive"
+ },
+ {
+  "group": "Files",
+  "name": "attachment",
+  "code": "F03E2",
+  "glyph": "md-paperclip"
+ },
+ {
+  "group": "Files",
+  "name": "clipboard",
+  "code": "F014D",
+  "glyph": "md-clipboard_text"
+ },
+ {
+  "group": "Files",
+  "name": "book",
+  "code": "F14F7",
+  "glyph": "md-book_open_variant"
+ },
+ {
+  "group": "Users and access",
+  "name": "user",
+  "code": "F0004",
+  "glyph": "md-account"
+ },
+ {
+  "group": "Users and access",
+  "name": "users",
+  "code": "F0849",
+  "glyph": "md-account_group"
+ },
+ {
+  "group": "Users and access",
+  "name": "user-add",
+  "code": "F0014",
+  "glyph": "md-account_plus"
+ },
+ {
+  "group": "Users and access",
+  "name": "user-remove",
+  "code": "F000D",
+  "glyph": "md-account_minus"
+ },
+ {
+  "group": "Users and access",
+  "name": "id-card",
+  "code": "F05D2",
+  "glyph": "md-card_account_details"
+ },
+ {
+  "group": "Users and access",
+  "name": "login",
+  "code": "F0342",
+  "glyph": "md-login"
+ },
+ {
+  "group": "Users and access",
+  "name": "logout",
+  "code": "F0343",
+  "glyph": "md-logout"
+ },
+ {
+  "group": "Users and access",
+  "name": "lock",
+  "code": "F033E",
+  "glyph": "md-lock"
+ },
+ {
+  "group": "Users and access",
+  "name": "unlock",
+  "code": "F0FC6",
+  "glyph": "md-lock_open_variant"
+ },
+ {
+  "group": "Users and access",
+  "name": "key",
+  "code": "F0306",
+  "glyph": "md-key"
+ },
+ {
+  "group": "Communication",
+  "name": "mail",
+  "code": "F01EE",
+  "glyph": "md-email"
+ },
+ {
+  "group": "Communication",
+  "name": "inbox",
+  "code": "F0687",
+  "glyph": "md-inbox"
+ },
+ {
+  "group": "Communication",
+  "name": "chat",
+  "code": "F0B79",
+  "glyph": "md-chat"
+ },
+ {
+  "group": "Communication",
+  "name": "comment",
+  "code": "F0188",
+  "glyph": "md-comment_text"
+ },
+ {
+  "group": "Communication",
+  "name": "phone",
+  "code": "F03F2",
+  "glyph": "md-phone"
+ },
+ {
+  "group": "Communication",
+  "name": "mobile",
+  "code": "F011C",
+  "glyph": "md-cellphone"
+ },
+ {
+  "group": "Communication",
+  "name": "sms",
+  "code": "F0369",
+  "glyph": "md-message_text"
+ },
+ {
+  "group": "Communication",
+  "name": "at",
+  "code": "F0065",
+  "glyph": "md-at"
+ },
+ {
+  "group": "Communication",
+  "name": "megaphone",
+  "code": "F00E6",
+  "glyph": "md-bullhorn"
+ },
+ {
+  "group": "Data",
+  "name": "chart-bar",
+  "code": "F0128",
+  "glyph": "md-chart_bar"
+ },
+ {
+  "group": "Data",
+  "name": "chart-line",
+  "code": "F012A",
+  "glyph": "md-chart_line"
+ },
+ {
+  "group": "Data",
+  "name": "chart-pie",
+  "code": "F012B",
+  "glyph": "md-chart_pie"
+ },
+ {
+  "group": "Data",
+  "name": "trend-up",
+  "code": "F0535",
+  "glyph": "md-trending_up"
+ },
+ {
+  "group": "Data",
+  "name": "trend-down",
+  "code": "F0533",
+  "glyph": "md-trending_down"
+ },
+ {
+  "group": "Data",
+  "name": "table",
+  "code": "F04EB",
+  "glyph": "md-table"
+ },
+ {
+  "group": "Data",
+  "name": "list",
+  "code": "F0279",
+  "glyph": "md-format_list_bulleted"
+ },
+ {
+  "group": "Data",
+  "name": "grid",
+  "code": "F0570",
+  "glyph": "md-view_grid"
+ },
+ {
+  "group": "Data",
+  "name": "database",
+  "code": "F01BC",
+  "glyph": "md-database"
+ },
+ {
+  "group": "Data",
+  "name": "pulse",
+  "code": "F0430",
+  "glyph": "md-pulse"
+ },
+ {
+  "group": "Time",
+  "name": "calendar",
+  "code": "F00ED",
+  "glyph": "md-calendar"
+ },
+ {
+  "group": "Time",
+  "name": "clock",
+  "code": "F0150",
+  "glyph": "md-clock_outline"
+ },
+ {
+  "group": "Time",
+  "name": "history",
+  "code": "F02DA",
+  "glyph": "md-history"
+ },
+ {
+  "group": "Time",
+  "name": "timer",
+  "code": "F051B",
+  "glyph": "md-timer_outline"
+ },
+ {
+  "group": "Time",
+  "name": "alarm",
+  "code": "F0020",
+  "glyph": "md-alarm"
+ },
+ {
+  "group": "Time",
+  "name": "hourglass",
+  "code": "F051F",
+  "glyph": "md-timer_sand"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "server",
+  "code": "F048B",
+  "glyph": "md-server"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "cloud",
+  "code": "F015F",
+  "glyph": "md-cloud"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "cloud-up",
+  "code": "F0167",
+  "glyph": "md-cloud_upload"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "cloud-down",
+  "code": "F0162",
+  "glyph": "md-cloud_download"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "network",
+  "code": "F0317",
+  "glyph": "md-lan"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "wifi",
+  "code": "F05A9",
+  "glyph": "md-wifi"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "wifi-off",
+  "code": "F05AA",
+  "glyph": "md-wifi_off"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "antenna",
+  "code": "F1119",
+  "glyph": "md-antenna"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "plug",
+  "code": "F06A5",
+  "glyph": "md-power_plug"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "power",
+  "code": "F0425",
+  "glyph": "md-power"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "cpu",
+  "code": "F061A",
+  "glyph": "md-chip"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "memory",
+  "code": "F035B",
+  "glyph": "md-memory"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "disk",
+  "code": "F02CA",
+  "glyph": "md-harddisk"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "terminal",
+  "code": "F018D",
+  "glyph": "md-console"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "code",
+  "code": "F0174",
+  "glyph": "md-code_tags"
+ },
+ {
+  "group": "Infra and ops",
+  "name": "bug",
+  "code": "F00E4",
+  "glyph": "md-bug"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "branch",
+  "code": "F062C",
+  "glyph": "md-source_branch"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "commit",
+  "code": "F0718",
+  "glyph": "md-source_commit"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "merge",
+  "code": "F062D",
+  "glyph": "md-source_merge"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "pull-request",
+  "code": "F04C2",
+  "glyph": "md-source_pull"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "github",
+  "code": "F02A4",
+  "glyph": "md-github"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "gitlab",
+  "code": "F0BA0",
+  "glyph": "md-gitlab"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "docker",
+  "code": "F0868",
+  "glyph": "md-docker"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "linux",
+  "code": "F033D",
+  "glyph": "md-linux"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "apple",
+  "code": "F0035",
+  "glyph": "md-apple"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "windows",
+  "code": "F05B3",
+  "glyph": "md-microsoft_windows"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "android",
+  "code": "F0032",
+  "glyph": "md-android"
+ },
+ {
+  "group": "Dev and brands",
+  "name": "google",
+  "code": "F02AD",
+  "glyph": "md-google"
+ },
+ {
+  "group": "Money",
+  "name": "cart",
+  "code": "F0110",
+  "glyph": "md-cart"
+ },
+ {
+  "group": "Money",
+  "name": "card",
+  "code": "F0FEF",
+  "glyph": "md-credit_card"
+ },
+ {
+  "group": "Money",
+  "name": "wallet",
+  "code": "F0584",
+  "glyph": "md-wallet"
+ },
+ {
+  "group": "Money",
+  "name": "bank",
+  "code": "F0070",
+  "glyph": "md-bank"
+ },
+ {
+  "group": "Money",
+  "name": "receipt",
+  "code": "F0449",
+  "glyph": "md-receipt"
+ },
+ {
+  "group": "Money",
+  "name": "tag",
+  "code": "F04F9",
+  "glyph": "md-tag"
+ },
+ {
+  "group": "Money",
+  "name": "percent",
+  "code": "F03F0",
+  "glyph": "md-percent"
+ },
+ {
+  "group": "Money",
+  "name": "currency",
+  "code": "F0114",
+  "glyph": "md-cash"
+ },
+ {
+  "group": "Media",
+  "name": "play",
+  "code": "F040A",
+  "glyph": "md-play"
+ },
+ {
+  "group": "Media",
+  "name": "pause",
+  "code": "F03E4",
+  "glyph": "md-pause"
+ },
+ {
+  "group": "Media",
+  "name": "stop",
+  "code": "F04DB",
+  "glyph": "md-stop"
+ },
+ {
+  "group": "Media",
+  "name": "volume",
+  "code": "F057E",
+  "glyph": "md-volume_high"
+ },
+ {
+  "group": "Media",
+  "name": "mute",
+  "code": "F0581",
+  "glyph": "md-volume_off"
+ },
+ {
+  "group": "Media",
+  "name": "camera",
+  "code": "F0100",
+  "glyph": "md-camera"
+ },
+ {
+  "group": "Media",
+  "name": "video",
+  "code": "F0567",
+  "glyph": "md-video"
+ },
+ {
+  "group": "Media",
+  "name": "mic",
+  "code": "F036C",
+  "glyph": "md-microphone"
+ },
+ {
+  "group": "View",
+  "name": "eye",
+  "code": "F0208",
+  "glyph": "md-eye"
+ },
+ {
+  "group": "View",
+  "name": "eye-off",
+  "code": "F0209",
+  "glyph": "md-eye_off"
+ },
+ {
+  "group": "View",
+  "name": "expand",
+  "code": "F0616",
+  "glyph": "md-arrow_expand"
+ },
+ {
+  "group": "View",
+  "name": "collapse",
+  "code": "F0615",
+  "glyph": "md-arrow_collapse"
+ },
+ {
+  "group": "View",
+  "name": "maximize",
+  "code": "F0293",
+  "glyph": "md-fullscreen"
+ },
+ {
+  "group": "View",
+  "name": "minimize",
+  "code": "F0294",
+  "glyph": "md-fullscreen_exit"
+ },
+ {
+  "group": "View",
+  "name": "columns",
+  "code": "F056D",
+  "glyph": "md-view_column"
+ },
+ {
+  "group": "View",
+  "name": "pin",
+  "code": "F0403",
+  "glyph": "md-pin"
+ },
+ {
+  "group": "Misc",
+  "name": "tap",
+  "code": "F12A8",
+  "glyph": "md-gesture_tap_button"
+ },
+ {
+  "group": "Misc",
+  "name": "palette",
+  "code": "F03D8",
+  "glyph": "md-palette"
+ },
+ {
+  "group": "Misc",
+  "name": "dashboard",
+  "code": "F056E",
+  "glyph": "md-view_dashboard"
+ },
+ {
+  "group": "Misc",
+  "name": "form",
+  "code": "F1401",
+  "glyph": "md-form_select"
+ },
+ {
+  "group": "Misc",
+  "name": "density",
+  "code": "F0278",
+  "glyph": "md-format_line_spacing"
+ },
+ {
+  "group": "Misc",
+  "name": "star",
+  "code": "F04CE",
+  "glyph": "md-star"
+ },
+ {
+  "group": "Misc",
+  "name": "star-outline",
+  "code": "F04D2",
+  "glyph": "md-star_outline"
+ },
+ {
+  "group": "Misc",
+  "name": "heart",
+  "code": "F02D1",
+  "glyph": "md-heart"
+ },
+ {
+  "group": "Misc",
+  "name": "bookmark",
+  "code": "F00C0",
+  "glyph": "md-bookmark"
+ },
+ {
+  "group": "Misc",
+  "name": "flag",
+  "code": "F023B",
+  "glyph": "md-flag"
+ },
+ {
+  "group": "Misc",
+  "name": "map-pin",
+  "code": "F034E",
+  "glyph": "md-map_marker"
+ },
+ {
+  "group": "Misc",
+  "name": "globe",
+  "code": "F01E7",
+  "glyph": "md-earth"
+ },
+ {
+  "group": "Misc",
+  "name": "sun",
+  "code": "F0599",
+  "glyph": "md-weather_sunny"
+ },
+ {
+  "group": "Misc",
+  "name": "moon",
+  "code": "F0594",
+  "glyph": "md-weather_night"
+ },
+ {
+  "group": "Misc",
+  "name": "bolt",
+  "code": "F140B",
+  "glyph": "md-lightning_bolt"
+ },
+ {
+  "group": "Misc",
+  "name": "bulb",
+  "code": "F0336",
+  "glyph": "md-lightbulb_outline"
+ },
+ {
+  "group": "Misc",
+  "name": "wrench",
+  "code": "F05B7",
+  "glyph": "md-wrench"
+ }
+]
