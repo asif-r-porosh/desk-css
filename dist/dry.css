@@ -343,7 +343,7 @@
   /* card, and the shared header/footer structure used by cards and dialogs */
   .card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-4); margin-bottom: var(--s-4); }
   :is(.card, dialog, dialog > form) > header {
-    display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2);
     margin: calc(-1 * var(--s-4)) calc(-1 * var(--s-4)) var(--s-4); padding: var(--s-3) var(--s-4);
     border-bottom: 1px solid var(--line); font-weight: var(--w-bold);
   }
@@ -548,6 +548,7 @@
   .row > .group { width: 18rem; max-width: 100%; }
   :is(.stack, .row, .grid, .split):not(:last-child) { margin-bottom: var(--s-4); }
   :is(.stack, .row, .grid, .split) > :is(.stack, .row, .grid, .split) { margin-bottom: 0; }
+  :is(.card, dialog, dialog > form) > :is(header, footer) > :is(.stack, .row, .grid, .split) { margin-bottom: 0; }
   .gap-sm { --gap: var(--s-2); }
   .gap-lg { --gap: var(--s-6); }
 }
