@@ -176,7 +176,7 @@ def build_cheatsheet():
             if group is not None:
                 rows.append('        </div>')
             group = d["group"]
-            rows.append(f'        <h6>{group}</h6>')
+            rows.append(f'        <h3>{group}</h3>')
             rows.append('        <div class="grid cols-6 gap-sm">')
         rows.append(f'          <div class="row nowrap gap-sm" data-code="&amp;#x{d["code"]};" title="{d["glyph"]}">'
                     f'<span class="icon-lg">&#x{d["code"]};</span>'
