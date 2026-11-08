@@ -12,17 +12,21 @@
      Panes: wide (70rem and up) shows folders, list and message; narrower shows the list or the message. */
   .inbox { --sel: color-mix(in srgb, var(--accent) 12%, transparent); display: grid; gap: var(--s-4); grid-template-columns: minmax(0, 1fr); align-items: start; }
   .inbox .msg { display: none; margin-bottom: 0; }
-  .inbox .msg:target { display: block; }
+  .inbox .mark:target + .msg { display: block; }
   .inbox .back { display: inline-flex; }
-  .inbox:not(:has(.msg:target)) .reader { display: none; }
-  .inbox:has(.msg:target) .list { display: none; }
+  /* Jump targets: empty markers with no size, so following a link scrolls to the right place on a phone.
+     On wide screens the marker is fixed to the viewport, so the page does not scroll at all. */
+  .anchor, .mark { position: absolute; width: 0; height: 0; }
+  .inbox:not(:has(.mark:target)) .reader { display: none; }
+  .inbox:has(.mark:target) .list { display: none; }
   @media (width >= 70rem) {
     .inbox { grid-template-columns: minmax(19rem, 26rem) minmax(0, 1fr); }
-    .inbox:not(:has(.msg:target)) .reader { display: block; }
-    .inbox:not(:has(.msg:target)) .msg:first-of-type { display: block; }
-    .inbox:has(.msg:target) .list { display: block; }
-    .inbox:not(:has(.msg:target)) tbody tr:first-child { background: var(--sel); }
+    .inbox:not(:has(.mark:target)) .reader { display: block; }
+    .inbox:not(:has(.mark:target)) .msg:first-of-type { display: block; }
+    .inbox:has(.mark:target) .list { display: block; }
+    .inbox:not(:has(.mark:target)) tbody tr:first-child { background: var(--sel); }
     .inbox .back { display: none; }
+    .anchor, .mark { position: fixed; top: 0; left: 0; }
   }
   .inbox:has(#m1:target) tbody tr:has(a[href="#m1"]) { background: var(--sel); }
   .inbox:has(#m2:target) tbody tr:has(a[href="#m2"]) { background: var(--sel); }
@@ -92,8 +96,9 @@
         <button class="primary" commandfor="compose" command="show-modal">&#xF03EB; Compose</button>
       </div>
 
+      <i class="anchor" id="list"></i>
       <div class="inbox">
-        <section class="list" id="list">
+        <section class="list">
           <div class="card">
             <div class="tabs">
               <a href="#list" aria-current="page">All</a>
@@ -236,7 +241,8 @@
         </section>
 
         <div class="reader">
-      <article class="msg card" id="m1">
+      <i class="mark" id="m1"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -263,7 +269,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m2">
+      <i class="mark" id="m2"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -290,7 +297,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m3">
+      <i class="mark" id="m3"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -314,7 +322,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m4">
+      <i class="mark" id="m4"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -338,7 +347,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m5">
+      <i class="mark" id="m5"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -365,7 +375,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m6">
+      <i class="mark" id="m6"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -389,7 +400,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m7">
+      <i class="mark" id="m7"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -413,7 +425,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m8">
+      <i class="mark" id="m8"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -437,7 +450,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m9">
+      <i class="mark" id="m9"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -464,7 +478,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m10">
+      <i class="mark" id="m10"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -488,7 +503,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m11">
+      <i class="mark" id="m11"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
@@ -512,7 +528,8 @@
           <button>&#xF0734; Forward</button>
         </footer>
       </article>
-      <article class="msg card" id="m12">
+      <i class="mark" id="m12"></i>
+      <article class="msg card">
         <header>
           <a class="btn ghost sm back" href="#list">&#xF030D; Inbox</a>
           <div class="row nowrap push">
