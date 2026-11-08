@@ -542,7 +542,7 @@
   .center { display: grid; place-items: center; }
 
   :is(.stack, .row, .grid, .split) > * { margin-block: 0; }
-  .row > :is(input, select) { width: auto; }
+  .row > :is(input:not([type="color"]), select) { width: auto; }
   .row > .group { width: 18rem; max-width: 100%; }
   :is(.stack, .row, .grid, .split):not(:last-child) { margin-bottom: var(--s-4); }
   :is(.stack, .row, .grid, .split) > :is(.stack, .row, .grid, .split) { margin-bottom: 0; }
