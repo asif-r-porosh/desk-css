@@ -1,5 +1,3 @@
-<p align="center"><img src="assets/banner.png" alt="desk.css"></p>
-
 # desk.css
 
 A small CSS library for everyday tools: admin screens, dashboards, internal apps.
