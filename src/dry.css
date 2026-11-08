@@ -121,6 +121,7 @@
     line-height: var(--lh);
     color: var(--fg);
     background: var(--bg);
+    overflow-wrap: anywhere;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -173,6 +174,7 @@
   /* tables */
   table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
   th, td { padding: .45rem .65rem; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--line); }
+  th, td { overflow-wrap: normal; }
   th { font-weight: var(--w-bold); color: var(--fg-2); font-size: var(--fs-sm); white-space: nowrap; }
   thead th { border-bottom-color: var(--line-2); }
   tfoot td, tfoot th { border-top: 1px solid var(--line-2); border-bottom: 0; font-weight: var(--w-bold); }
