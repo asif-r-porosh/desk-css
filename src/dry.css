@@ -67,7 +67,7 @@
     --accent-fill: var(--accent);
     --accent-hover: color-mix(in oklab, var(--accent-fill) 85%, #000);
     --accent-on: #fff;
-    --accent-ink: light-dark(oklch(from var(--accent) min(l, .55) c h), oklch(from var(--accent) max(l, .74) c h));
+    --accent-ink: light-dark(oklch(from var(--accent) min(l, .5) c h), oklch(from var(--accent) max(l, .74) c h));
     --accent-bg: color-mix(in oklab, var(--accent) 12%, var(--bg));
 
     /* status colors stay fixed so "danger" never follows the accent */
