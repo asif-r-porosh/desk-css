@@ -192,7 +192,7 @@
   }
   :where(input, select, textarea):hover { border-color: var(--fg-3); }
   :where(input:not([type="checkbox"], [type="radio"], [type="range"]), select, textarea):focus {
-    outline: none; border-color: var(--accent-ink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+    outline: 2px solid transparent; outline-offset: 0; border-color: var(--accent-ink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
   }
   textarea { height: auto; min-height: 5rem; padding: var(--s-2) var(--s-3); resize: vertical; line-height: var(--lh); }
   select:not([multiple], [size]) {
