@@ -1,12 +1,12 @@
-<p align="center"><img src="assets/banner.png" alt="dry.css"></p>
+<p align="center"><img src="assets/banner.png" alt="desk.css"></p>
 
-# dry.css
+# desk.css
 
 A small CSS library for everyday tools: admin screens, dashboards, internal apps.
 
 Many CSS frameworks are tuned for marketing pages, with large buttons, generous padding and big type. On a laptop, a data-heavy screen built with them feels zoomed in. Classless libraries stay small and quiet, but they style bare HTML elements only; layouts such as a sidebar, or components such as status badges, still need custom CSS.
 
-dry.css sits in between. Plain HTML looks right with no classes. A short list of classes covers the rest. No JavaScript, no build step to use it, no 12-column grid.
+desk.css sits in between. Plain HTML looks right with no classes. A short list of classes covers the rest. No JavaScript, no build step to use it, no 12-column grid.
 
 ## Features
 
@@ -22,14 +22,14 @@ About 7 KB over the wire, plus fonts.
 
 ## Getting started
 
-Copy `dry.min.css` and the `fonts/` folder from `dist/` into the project, side by side. For icons, add `dry.icons.min.css` as well.
+Copy `desk.min.css` and the `fonts/` folder from `dist/` into the project, side by side. For icons, add `desk.icons.min.css` as well.
 
 ```html
-<link rel="stylesheet" href="dry.min.css">
-<link rel="stylesheet" href="dry.icons.min.css">
+<link rel="stylesheet" href="desk.min.css">
+<link rel="stylesheet" href="desk.icons.min.css">
 ```
 
-The readable `dry.css` and `dry.icons.css` in `dist/` hold the same rules, with comments and whitespace kept.
+The readable `desk.css` and `desk.icons.css` in `dist/` hold the same rules, with comments and whitespace kept.
 
 `docs.html` shows every element and component next to the markup.
 
@@ -55,7 +55,7 @@ Links, buttons, focus rings, switches and tints follow the accent. Status colors
 
 ## Icons
 
-With `dry.icons.min.css` (or `dry.icons.css`) loaded, an icon is its character code placed in text:
+With `desk.icons.min.css` (or `desk.icons.css`) loaded, an icon is its character code placed in text:
 
 ```html
 <h2>&#xF02DC; Dashboard</h2>
@@ -68,7 +68,7 @@ The icons are from [Material Design Icons](https://github.com/Templarian/Materia
 
 ## Templates
 
-`templates/` holds single-page examples. Each links `../dist/dry.css`, so it opens straight from a clone.
+`templates/` holds single-page examples. Each links `../dist/desk.css`, so it opens straight from a clone.
 
 - `inbox.html`: three-pane mailbox; messages switch with plain CSS (`:target`).
 - `dashboard.html`: stat cards, a bar chart in CSS, a table with filter and pagination, an activity list.
@@ -79,17 +79,17 @@ All data is invented. Apart from the showcase, the pages use script only for the
 
 ## Overrides
 
-All rules live in a cascade layer named `dry`. CSS written outside a layer always wins, so `!important` is never needed. Every size, space and color is a CSS variable, changeable on `:root`.
+All rules live in a cascade layer named `desk`. CSS written outside a layer always wins, so `!important` is never needed. Every size, space and color is a CSS variable, changeable on `:root`.
 
 ## Browser support
 
-Current Chrome, Edge, Firefox and Safari. dry.css relies on recent CSS (`light-dark()`, relative colors, `:has()`, popover); older browsers are not a target.
+Current Chrome, Edge, Firefox and Safari. desk.css relies on recent CSS (`light-dark()`, relative colors, `:has()`, popover); older browsers are not a target.
 
 The docs and templates open dialogs with `commandfor` and `command="show-modal"`, which needs Chrome or Edge 135, Firefox 144, or Safari 26.2. In older browsers those buttons do nothing; a dialog can still be opened with `showModal()` in script. The stylesheet itself does not depend on these attributes.
 
 ## Building
 
-`dist/` is generated from `src/`. Edit `src/dry.css`, then run:
+`dist/` is generated from `src/`. Edit `src/desk.css`, then run:
 
 ```sh
 python3 tools/build.py
@@ -107,7 +107,7 @@ The fonts folder holds three variable font files from the [Google Fonts reposito
 
 ## License
 
-dry.css is released under the [MIT License](LICENSE).
+desk.css is released under the [MIT License](LICENSE).
 
 Fonts and icons carry their own licenses, included in `dist/fonts/`:
 
