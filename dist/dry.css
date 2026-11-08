@@ -353,9 +353,11 @@
     margin: var(--s-4) calc(-1 * var(--s-4)) calc(-1 * var(--s-4)); padding: var(--s-3) var(--s-4);
     border-top: 1px solid var(--line); background: var(--bg-2); border-radius: 0 0 var(--r-lg) var(--r-lg);
   }
-  :is(.card, dialog) > :is(table, .table-wrap) { width: calc(100% + 2 * var(--s-4)); margin-inline: calc(-1 * var(--s-4)); border-inline: 0; border-radius: 0; }
+  :is(.card, dialog) > :is(table, .table-wrap) { width: calc(100% + 2 * var(--s-4)); max-width: none; margin-inline: calc(-1 * var(--s-4)); border-inline: 0; border-radius: 0; }
   :is(.card, dialog) > header + :is(table, .table-wrap) { margin-top: calc(-1 * var(--s-4)); }
   :is(.card, dialog) > :is(table, .table-wrap):last-child { margin-bottom: calc(-1 * var(--s-4)); }
+  :is(.card, dialog) > :is(table, .table-wrap):has(+ footer) { margin-bottom: 0; }
+  :is(.card, dialog) > :is(table, .table-wrap) + footer { margin-top: 0; }
   :is(.card, dialog) > table :is(th, td):first-child, .card > .table-wrap :is(th, td):first-child { padding-left: var(--s-4); }
   :is(.card, dialog, dialog > form) > :last-child:not(footer, table, .table-wrap) { margin-bottom: 0; }
 
