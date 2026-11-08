@@ -1,7 +1,7 @@
 Material Design Icons
 =====================
 
-The icon glyphs inside dist/dry.icons.css and dist/dry.icons.min.css come from
+The icon glyphs inside dist/desk.icons.css and dist/desk.icons.min.css come from
 the Material Design Icons collection by Pictogrammers
 (https://github.com/Templarian/MaterialDesign). They were taken through
 Nerd Fonts Symbols 3.5.1 (https://github.com/ryanoasis/nerd-fonts, MIT License,

@@ -1,5 +1,5 @@
 /*!
- * dry.icons.css v0.1: optional icon font for dry.css. MIT License, (c) 2026 Asif R. Porosh.
+ * desk.icons.css v0.1: optional icon font for desk.css. MIT License, (c) 2026 Asif R. Porosh.
  * Type an icon code into any text: <h2>&#xF02DC; Home</h2>. The icon follows the text's size and color.
  * Cheat sheet: docs.html. List: icons.json.
  * Icons: Material Design Icons by Pictogrammers (Apache-2.0), subset from Nerd Fonts Symbols 3.5.1 (MIT).
@@ -7,10 +7,10 @@
  */
 /*@@ICON_FONT@@*/
 
-@layer dry.tokens, dry.base, dry.components, dry.layout, dry.utilities;
+@layer desk.tokens, desk.base, desk.components, desk.layout, desk.utilities;
 
-@layer dry.utilities {
+@layer desk.utilities {
   .icon-lg { font-size: 1.4em; line-height: 1; }
-  .spin { display: inline-block; animation: dry-icon-spin 1s linear infinite; }
-  @keyframes dry-icon-spin { to { transform: rotate(360deg); } }
+  .spin { display: inline-block; animation: desk-icon-spin 1s linear infinite; }
+  @keyframes desk-icon-spin { to { transform: rotate(360deg); } }
 }

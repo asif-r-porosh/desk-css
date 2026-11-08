@@ -3,8 +3,8 @@
 
 Usage:
   python3 tools/build.py
-      Writes dist/dry.css, dist/dry.min.css, dist/dry.icons.css and
-      dist/dry.icons.min.css, and refreshes the icon cheat sheet in docs.html
+      Writes dist/desk.css, dist/desk.min.css, dist/desk.icons.css and
+      dist/desk.icons.min.css, and refreshes the icon cheat sheet in docs.html
       (and templates/showcase.html when present). Needs only Python 3.
 
   python3 tools/build.py --fonts <fonts-dir> [<symbols-nerd-font.ttf>]
@@ -12,14 +12,14 @@ Usage:
         - Hanken Grotesk 450, 450 italic and 600, and JetBrains Mono 450 -> dist/fonts/
       With the Symbols Nerd Font file as the second argument, the icons are
       rebuilt too:
-        - the icons listed in tools/icons.txt -> src/dry-icons.woff2
+        - the icons listed in tools/icons.txt -> src/desk-icons.woff2
         - dist/icons.json (name -> code)
       <fonts-dir> holds the variable font files, under these names:
         HankenGrotesk[wght].ttf, HankenGrotesk-Italic[wght].ttf, JetBrainsMono[wght].ttf
       (from https://github.com/google/fonts, folders ofl/hankengrotesk and ofl/jetbrainsmono).
       The weights are pinned to fixed values and the glyphs cut down to Latin.
 
-Sources: src/dry.css (hand-edited), src/dry.icons.css (template), src/dry-icons.woff2.
+Sources: src/desk.css (hand-edited), src/desk.icons.css (template), src/desk-icons.woff2.
 """
 import base64
 import json
@@ -132,7 +132,7 @@ def build_icons(symbols):
     if missing:
         sys.exit("icons not in font: " + ", ".join(missing))
     codes = sorted({by_name[g] for _, _, g in icons})
-    subset(symbols, os.path.join(SRC, "dry-icons.woff2"), glyph_unicodes=codes, features="")
+    subset(symbols, os.path.join(SRC, "desk-icons.woff2"), glyph_unicodes=codes, features="")
 
     data = [{"group": g, "name": a, "code": f"{by_name[n]:X}", "glyph": n} for g, a, n in icons]
     write_text(os.path.join(DIST, "icons.json"), json.dumps(data, indent=1))
@@ -168,20 +168,20 @@ def write(name, text):
 
 def build_css():
     os.makedirs(DIST, exist_ok=True)
-    core = read_text(os.path.join(SRC, "dry.css"))
+    core = read_text(os.path.join(SRC, "desk.css"))
 
-    font = read_bytes(os.path.join(SRC, "dry-icons.woff2"))
+    font = read_bytes(os.path.join(SRC, "desk-icons.woff2"))
     if len(font) > EMBED_LIMIT:
         sys.exit(f"icon font is {len(font)} bytes; over the {EMBED_LIMIT} byte embed limit")
-    face = ("@font-face {\n  font-family: \"DryIcons\";\n  font-display: block;\n"
+    face = ("@font-face {\n  font-family: \"DeskIcons\";\n  font-display: block;\n"
             f"  src: url(data:font/woff2;base64,{base64.b64encode(font).decode()}) format(\"woff2\");\n"
             "  unicode-range: U+F0000-F1FFF;\n}")
-    icons = read_text(os.path.join(SRC, "dry.icons.css")).replace("/*@@ICON_FONT@@*/", face)
+    icons = read_text(os.path.join(SRC, "desk.icons.css")).replace("/*@@ICON_FONT@@*/", face)
 
-    write("dry.css", core)
-    write("dry.min.css", minify(core))
-    write("dry.icons.css", icons)
-    write("dry.icons.min.css", minify(icons))
+    write("desk.css", core)
+    write("desk.min.css", minify(core))
+    write("desk.icons.css", icons)
+    write("desk.icons.min.css", minify(icons))
 
 
 # ---------- icon cheat sheet ----------
@@ -216,7 +216,7 @@ def build_cheatsheet():
 
 def report():
     import gzip
-    for name in ("dry.css", "dry.min.css", "dry.icons.css", "dry.icons.min.css"):
+    for name in ("desk.css", "desk.min.css", "desk.icons.css", "desk.icons.min.css"):
         raw = read_bytes(os.path.join(DIST, name))
         print(f"dist/{name}: {len(raw)/1024:.1f} KB, {len(gzip.compress(raw, 9))/1024:.1f} KB gzipped")
 

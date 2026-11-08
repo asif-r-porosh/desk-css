@@ -1,7 +1,7 @@
 /*!
- * dry.css v0.1: a lean daily-driver CSS library. MIT License, (c) 2026 Asif R. Porosh.
- * Classless base, a small set of classes, Hanken Grotesk and JetBrains Mono type. Icons live in dry.icons.css (optional).
- * Everything sits in @layer dry, so any CSS you write without a layer wins.
+ * desk.css v0.1: a lean daily-driver CSS library. MIT License, (c) 2026 Asif R. Porosh.
+ * Classless base, a small set of classes, Hanken Grotesk and JetBrains Mono type. Icons live in desk.icons.css (optional).
+ * Everything sits in @layer desk, so any CSS you write without a layer wins.
  * Fonts: Hanken Grotesk and JetBrains Mono, SIL Open Font License 1.1 (see fonts/).
  */
 
@@ -11,17 +11,17 @@
 @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/hanken-grotesk-600.woff2") format("woff2"); }
 @font-face { font-family: "JetBrains Mono"; font-weight: 450; font-style: normal; font-display: swap; src: url("fonts/jetbrains-mono-450.woff2") format("woff2"); }
 
-@layer dry.tokens, dry.base, dry.components, dry.layout, dry.utilities;
+@layer desk.tokens, desk.base, desk.components, desk.layout, desk.utilities;
 
 /* ---------- Tokens ---------- */
-@layer dry.tokens {
+@layer desk.tokens {
   :root {
     color-scheme: light dark;
 
-    /* "DryIcons" only resolves when dry.icons.css is loaded; otherwise the browser skips it */
-    --font-sans: "Hanken Grotesk", "DryIcons", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --font-serif: "DryIcons", ui-serif, Georgia, "Times New Roman", serif;  /* system serif: no font file is bundled */
-    --font-mono: "JetBrains Mono", "DryIcons", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    /* "DeskIcons" only resolves when desk.icons.css is loaded; otherwise the browser skips it */
+    --font-sans: "Hanken Grotesk", "DeskIcons", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "DeskIcons", ui-serif, Georgia, "Times New Roman", serif;  /* system serif: no font file is bundled */
+    --font-mono: "JetBrains Mono", "DeskIcons", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --w-normal: 450;
     --w-bold: 600;
 
@@ -108,7 +108,7 @@
 }
 
 /* ---------- Base (classless) ---------- */
-@layer dry.base {
+@layer desk.base {
   *, *::before, *::after { box-sizing: border-box; }
   html { font-size: 100%; -webkit-text-size-adjust: 100%; }
   html[data-density="compact"] { font-size: 87.5%; }
@@ -271,10 +271,10 @@
   [aria-busy="true"]::before {
     content: ""; display: inline-block; width: 1em; height: 1em; flex: none; vertical-align: -.15em;
     border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
-    animation: dry-spin .7s linear infinite;
+    animation: desk-spin .7s linear infinite;
   }
-  @keyframes dry-spin { to { transform: rotate(360deg); } }
-  @keyframes dry-pulse { 50% { opacity: .35; } }
+  @keyframes desk-spin { to { transform: rotate(360deg); } }
+  @keyframes desk-pulse { 50% { opacity: .35; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -282,7 +282,7 @@
 }
 
 /* ---------- Components ---------- */
-@layer dry.components {
+@layer desk.components {
   /* button variants: tones (.primary .danger .ok .warn .info), .ghost .link, sizes .sm .lg, shapes .icon .block */
   :is(button, .btn, input[type="submit"]):is(.primary, .danger, .ok, .warn, .info) {
     background: var(--tone-fill); border-color: var(--tone-fill); color: var(--tone-on);
@@ -379,10 +379,10 @@
   .badge.outline { background: transparent; border: 1px solid currentColor; }
   .dot { display: inline-block; width: .55em; height: .55em; margin-right: .35em; vertical-align: .08em;
          border-radius: 50%; background: var(--tone, var(--fg-3)); }
-  .dot.pulse { animation: dry-pulse 1.4s ease-in-out infinite; }
+  .dot.pulse { animation: desk-pulse 1.4s ease-in-out infinite; }
 
   .spinner { display: inline-block; width: 1em; height: 1em; vertical-align: -.15em; border: 2px solid currentColor;
-             border-right-color: transparent; border-radius: 50%; animation: dry-spin .7s linear infinite; }
+             border-right-color: transparent; border-radius: 50%; animation: desk-spin .7s linear infinite; }
 
   .empty { padding: var(--s-6) var(--s-4); text-align: center; color: var(--fg-2); border: 1px dashed var(--line-2); border-radius: var(--r-lg); }
   .empty > :first-child:not(:only-child) { display: block; font-size: 2rem; line-height: 1; margin-bottom: var(--s-2); color: var(--fg-3); }
@@ -499,7 +499,7 @@
 }
 
 /* ---------- Layout ---------- */
-@layer dry.layout {
+@layer desk.layout {
   .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-4); }
   .narrow { width: 100%; max-width: 26rem; margin-inline: auto; }
 
@@ -555,7 +555,7 @@
 }
 
 /* ---------- Utilities ---------- */
-@layer dry.utilities {
+@layer desk.utilities {
   .muted { color: var(--fg-2); }
   .faint { color: var(--fg-3); }
   .text-xs { font-size: var(--fs-xs); }
