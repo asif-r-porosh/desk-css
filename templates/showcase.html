@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dry.css showcase</title>
+<link rel="stylesheet" href="../dist/dry.css">
+<link rel="stylesheet" href="../dist/dry.icons.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="ghost icon narrow-only" popovertarget="side" aria-label="Menu"><span class="burger"></span></button>
+  <a class="brand" href="#overview">&#xF1119; Acme Gateway</a>
+  <nav class="wide-only">
+    <ul>
+      <li><a href="#overview" aria-current="page">Overview</a></li>
+      <li><a href="#routes">Routes</a></li>
+      <li><a href="#forms">Config</a></li>
+    </ul>
+  </nav>
+  <div class="row nowrap push">
+    <button class="ghost icon" id="density-btn" aria-label="Toggle compact density" data-tip="Compact">&#xF0278;</button>
+    <button class="ghost icon" id="theme-btn" aria-label="Toggle light and dark" data-tip="Theme">&#xF0594;</button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="side" popover>
+    <nav class="vertical">
+      <h6 class="narrow-only">App</h6>
+      <ul class="narrow-only">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#routes">Routes</a></li>
+        <li><a href="#forms">Config</a></li>
+      </ul>
+      <h6>Library</h6>
+      <ul>
+        <li><a href="#overview">&#xF056E; Overview</a></li>
+        <li><a href="#routes">&#xF04EB; Tables</a></li>
+        <li><a href="#forms">&#xF1401; Forms</a></li>
+        <li><a href="#buttons">&#xF12A8; Buttons</a></li>
+        <li><a href="#navigation">&#xF0142; Navigation</a></li>
+        <li><a href="#feedback">&#xF009A; Feedback</a></li>
+        <li><a href="#containers">&#xF024B; Containers</a></li>
+        <li><a href="#type">&#xF0219; Typography</a></li>
+        <li><a href="#prose">&#xF14F7; Prose</a></li>
+        <li><a href="#theming">&#xF03D8; Theming</a></li>
+        <li><a href="#icons">&#xF04CE; Icons</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- OVERVIEW -->
+    <section id="overview">
+      <ol class="breadcrumb">
+        <li><a href="#overview">Gateway</a></li>
+        <li><a href="#overview">Dhaka POP</a></li>
+        <li aria-current="page">Overview</li>
+      </ol>
+      <div class="row between">
+        <h1>A2P traffic overview</h1>
+        <div class="row">
+          <span class="muted text-sm">&#xF0450; Updated 14:05 BDT</span>
+          <details class="dropdown end">
+            <summary>&#xF00ED; Last 24 hours</summary>
+            <ul>
+              <li><a href="#overview">Last hour</a></li>
+              <li><a href="#overview">Last 24 hours</a></li>
+              <li><a href="#overview">Last 7 days</a></li>
+              <li><hr></li>
+              <li><button type="button">&#xF01DA; Export CSV</button></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="grid cols-4">
+        <div class="stat">
+          <span class="label">&#xF0369; Messages submitted</span>
+          <span class="value">31,482,907</span>
+          <span class="delta up">&#xF0535; 4.2% vs yesterday</span>
+        </div>
+        <div class="stat">
+          <span class="label">&#xF05E0; Delivery rate</span>
+          <span class="value">97.81%</span>
+          <span class="delta down">&#xF0533; 0.6 pts</span>
+        </div>
+        <div class="stat">
+          <span class="label">&#xF0150; p95 submit latency</span>
+          <span class="value">182 ms</span>
+          <span class="delta">within 250 ms target</span>
+        </div>
+        <div class="stat">
+          <span class="label">&#xF0317; Active binds</span>
+          <span class="value">146 / 152</span>
+          <span class="delta">6 aggregators idle</span>
+        </div>
+      </div>
+
+      <div class="alert warn">
+        <span>&#xF0026;</span>
+        <div><strong>Route OA-02 is degraded.</strong> DLR wait time is above 90 seconds since 13:40. Traffic is spilling over to OA-01.</div>
+      </div>
+    </section>
+
+    <!-- TABLES -->
+    <section id="routes">
+      <div class="row between">
+        <h2>Operator routes</h2>
+        <label class="nowrap"><input type="checkbox" role="switch" id="compact-toggle"> Compact table</label>
+      </div>
+      <div class="table-wrap sticky">
+        <table class="hover" id="route-table">
+          <thead>
+            <tr><th>Route</th><th>Operator</th><th>Status</th><th class="num">TPS</th><th class="num">Submitted</th><th class="num">Delivered</th><th class="num">DLR p95</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">OA-01</td><td>Operator A</td><td><span class="dot ok"></span>Up</td><td class="num">1,200</td><td class="num">9,412,330</td><td class="num">98.9%</td><td class="num">6.1 s</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+            <tr><td class="mono">OA-02</td><td>Operator A</td><td><span class="dot warn pulse"></span>Degraded</td><td class="num">1,200</td><td class="num">4,018,775</td><td class="num">93.4%</td><td class="num text-warn">94.0 s</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+            <tr><td class="mono">OB-01</td><td>Operator B</td><td><span class="dot ok"></span>Up</td><td class="num">900</td><td class="num">6,207,114</td><td class="num">98.2%</td><td class="num">7.4 s</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+            <tr><td class="mono">OC-01</td><td>Operator C</td><td><span class="dot ok"></span>Up</td><td class="num">1,000</td><td class="num">7,550,861</td><td class="num">98.6%</td><td class="num">5.8 s</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+            <tr><td class="mono">OC-02</td><td>Operator C</td><td><span class="dot"></span>Standby</td><td class="num">1,000</td><td class="num">0</td><td class="num muted">n/a</td><td class="num muted">n/a</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+            <tr><td class="mono">OD-01</td><td>Operator D</td><td><span class="dot danger"></span>Down</td><td class="num">300</td><td class="num">1,190,402</td><td class="num">71.0%</td><td class="num text-danger">timeout</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+            <tr><td class="mono">IP-01</td><td>IPTSP pool</td><td><span class="dot ok"></span>Up</td><td class="num">400</td><td class="num">3,103,425</td><td class="num">97.7%</td><td class="num">9.2 s</td><td class="num"><button class="ghost icon sm" aria-label="Actions">&#xF01D9;</button></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="4">Total</td><td class="num">31,482,907</td><td class="num">97.8%</td><td></td><td></td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="text-sm muted">Classes: <code>.table-wrap.sticky</code>, <code>table.hover</code>, <code>.num</code>, <code>.dot.ok</code>. The switch adds <code>.compact</code> and <code>.striped</code>.</p>
+
+      <h3>Bordered, inside a card</h3>
+      <div class="card">
+        <header><h4>&#xF0849; Top aggregators by volume</h4><span class="badge">today</span></header>
+        <table class="bordered compact">
+          <thead><tr><th>Aggregator</th><th>Type</th><th class="num">Messages</th><th class="num">Share</th></tr></thead>
+          <tbody>
+            <tr><td>Aggregator 01</td><td><span class="badge info">OTP</span></td><td class="num">4,920,118</td><td class="num">15.6%</td></tr>
+            <tr><td>Aggregator 02</td><td><span class="badge">Promo</span></td><td class="num">3,744,092</td><td class="num">11.9%</td></tr>
+            <tr><td>Aggregator 03</td><td><span class="badge info">OTP</span></td><td class="num">2,615,307</td><td class="num">8.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section id="forms">
+      <h2>Forms</h2>
+      <form class="card" id="demo-form" novalidate>
+        <header><h4>&#xF0493; Route settings</h4><span class="badge outline">draft</span></header>
+        <div class="grid cols-3">
+          <div class="field">
+            <label for="f-name">Route name</label>
+            <input id="f-name" value="OA-03">
+            <span class="help">Shown on dashboards and in alerts.</span>
+          </div>
+          <div class="field">
+            <label for="f-op">Operator</label>
+            <select id="f-op">
+              <option>Operator A</option><option>Operator B</option><option>Operator C</option><option>Operator D</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-host">SMPP host</label>
+            <div class="group">
+              <span>smpp://</span>
+              <input id="f-host" value="10.20.4.17">
+              <span>:2775</span>
+            </div>
+          </div>
+          <div class="field error">
+            <label for="f-tps">Throughput limit (TPS)</label>
+            <input id="f-tps" type="number" value="5000" aria-invalid="true">
+            <span class="help">&#xF0029; Above the 1,500 TPS agreed with the operator.</span>
+          </div>
+          <div class="field">
+            <label for="f-search">Sender ID allow list</label>
+            <div class="group">
+              <input id="f-search" placeholder="Search sender IDs">
+              <button type="button" class="icon" aria-label="Search">&#xF0349;</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-win">Maintenance window</label>
+            <input id="f-win" type="time" value="02:00">
+          </div>
+          <div class="field">
+            <label for="f-retry">Retry weight: <span id="f-retry-out">60</span>%</label>
+            <input id="f-retry" type="range" min="0" max="100" value="60">
+          </div>
+          <div class="field">
+            <label for="f-file">Routing table (CSV)</label>
+            <input id="f-file" type="file" accept=".csv">
+          </div>
+        </div>
+        <fieldset>
+          <legend>Delivery reports</legend>
+          <div class="split">
+            <div>
+              <label><input type="radio" name="dlr" checked> Final status only</label>
+              <label><input type="radio" name="dlr"> Intermediate and final</label>
+              <label><input type="radio" name="dlr" disabled> Store and forward (not licensed)</label>
+            </div>
+            <div>
+              <label><input type="checkbox" checked> Retry on throttling error</label>
+              <label><input type="checkbox"> Mask message body in logs</label>
+              <label><input type="checkbox" role="switch" checked> Route enabled</label>
+            </div>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="f-note">Change note</label>
+          <textarea id="f-note" rows="3">Raise window size from 10 to 20 after operator capacity test on 5 Nov.</textarea>
+        </div>
+        <footer>
+          <button type="button" class="ghost">Cancel</button>
+          <button type="submit" class="primary">&#xF0193; Save route</button>
+        </footer>
+      </form>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <h2>Buttons</h2>
+      <div class="stack">
+        <div class="row">
+          <button>Default</button>
+          <button class="primary">Primary</button>
+          <button class="danger">&#xF01B4; Delete</button>
+          <button class="ok">&#xF012C; Approve</button>
+          <button class="warn">Hold</button>
+          <button class="ghost">Ghost</button>
+          <button class="link">Link button</button>
+          <a class="btn" href="#buttons">&#xF03CC; Link as .btn</a>
+        </div>
+        <div class="row">
+          <button class="sm">Small</button>
+          <button>Regular</button>
+          <button class="lg">Large</button>
+          <button class="icon" aria-label="Refresh">&#xF0450;</button>
+          <button class="icon sm" aria-label="Settings">&#xF0493;</button>
+          <button disabled>Disabled</button>
+          <button class="primary" aria-busy="true">Deploying</button>
+        </div>
+        <div class="row">
+          <div class="group">
+            <button>&#xF04BA; Sort</button>
+            <button>&#xF0232; Filter</button>
+            <button aria-label="Columns" class="icon">&#xF056D;</button>
+          </div>
+          <div class="group">
+            <button class="icon" aria-label="Previous">&#xF0141;</button>
+            <button class="icon" aria-label="Next">&#xF0142;</button>
+          </div>
+          <details class="dropdown">
+            <summary>&#xF01D8; More</summary>
+            <ul>
+              <li><a href="#buttons">&#xF018F; Duplicate route</a></li>
+              <li><a href="#buttons">&#xF02DA; View history</a></li>
+              <li><hr></li>
+              <li><button type="button" class="text-danger">&#xF01B4; Remove</button></li>
+            </ul>
+          </details>
+        </div>
+        <div class="grid cols-3">
+          <button class="primary block">&#xF0342; Full-width button</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION -->
+    <section id="navigation">
+      <h2>Navigation</h2>
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true">Traffic</button>
+        <button role="tab" aria-selected="false">Delivery</button>
+        <button role="tab" aria-selected="false">Billing</button>
+        <button role="tab" aria-selected="false">Audit log</button>
+      </div>
+      <p class="muted">Tabs are styling only. Switch <code>aria-selected</code> with a few lines of JS, or use links with <code>aria-current</code>. Breadcrumbs are at the top of the page; the sidebar is <code>nav.vertical</code>.</p>
+      <ul class="pagination">
+        <li><a href="#navigation" aria-label="Previous">&#xF0141;</a></li>
+        <li><a href="#navigation">1</a></li>
+        <li><a href="#navigation" aria-current="page">2</a></li>
+        <li><a href="#navigation">3</a></li>
+        <li><span>&hellip;</span></li>
+        <li><a href="#navigation">48</a></li>
+        <li><a href="#navigation" aria-label="Next">&#xF0142;</a></li>
+      </ul>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback">
+      <h2>Feedback</h2>
+      <div class="alert info"><span>&#xF02FC;</span><div>Operator maintenance on Operator C OC-01, Sunday 02:00 to 04:00.</div></div>
+      <div class="alert ok"><span>&#xF05E0;</span><div>Route OA-03 saved and reloaded on all 4 nodes.</div></div>
+      <div class="alert danger"><span>&#xF0029;</span><div><strong>OD-01 bind lost.</strong> 3 reconnect attempts failed. <a href="#feedback">Open incident</a></div></div>
+      <div class="alert"><span>&#xF0336;</span><div>A neutral alert, without a tone class.</div></div>
+
+      <div class="row">
+        <span class="badge">Default</span>
+        <span class="badge primary">Primary</span>
+        <span class="badge ok">&#xF012C; Delivered</span>
+        <span class="badge warn">Queued</span>
+        <span class="badge danger">Rejected</span>
+        <span class="badge info">OTP</span>
+        <span class="badge outline danger">Blocked</span>
+        <span><span class="dot ok"></span>Up</span>
+        <span><span class="dot warn pulse"></span>Degraded</span>
+        <span><span class="dot danger"></span>Down</span>
+      </div>
+
+      <div class="split">
+        <div class="stack gap-sm">
+          <span class="text-sm muted">Daily quota, Aggregator 01 (72%)</span>
+          <progress value="72" max="100"></progress>
+          <span class="text-sm muted">Promo window used (94%)</span>
+          <progress class="warn" value="94" max="100"></progress>
+        </div>
+        <div class="row">
+          <span class="spinner"></span> <span class="muted">Loading</span>
+          <span class="spin">&#xF0772;</span> <span class="muted">Icon spinner</span>
+          <button id="toast-btn">&#xF009A; Show toast</button>
+          <span data-tip="Delivery report">&#xF02D7; Hover for tooltip</span>
+        </div>
+      </div>
+
+      <div class="empty">
+        <span>&#xF0687;</span>
+        <p><strong>No undelivered messages</strong><br>Messages stuck for more than 10 minutes appear here.</p>
+      </div>
+    </section>
+
+    <!-- CONTAINERS -->
+    <section id="containers">
+      <h2>Containers</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <header><h4>&#xF048B; sms-gw-03</h4><span class="badge ok">healthy</span></header>
+          <dl class="kv">
+            <dt>Role</dt><dd>SMPP edge, Dhaka POP</dd>
+            <dt>Uptime</dt><dd>41 d 6 h</dd>
+            <dt>CPU / mem</dt><dd>38% / 61%</dd>
+            <dt>Version</dt><dd class="mono">gw 4.12.3</dd>
+          </dl>
+          <footer>
+            <button class="sm ghost">&#xF018D; Logs</button>
+            <button class="sm" commandfor="drain-dialog" command="show-modal">Drain</button>
+          </footer>
+        </article>
+        <div class="card">
+          <p>The Drain button opens a dialog with a form inside. Both opening and closing use plain HTML (<code>commandfor</code> and <code>form method="dialog"</code>), no JavaScript.</p>
+          <button commandfor="drain-dialog" command="show-modal">&#xF0293; Open dialog</button>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <details open>
+          <summary>What counts as a failed delivery?</summary>
+          <p>Any final DLR with a status other than DELIVRD, plus messages with no DLR after 72 hours.</p>
+        </details>
+        <details>
+          <summary>How is TPS measured?</summary>
+          <p>Submits accepted per second, averaged over a 10 second window on each bind.</p>
+        </details>
+        <details>
+          <summary>Who gets paged?</summary>
+          <p>The on-call engineer first, then the platform lead after 15 minutes without acknowledgement.</p>
+        </details>
+      </div>
+
+      <details>
+        <summary>A single details element</summary>
+        <p>Works without any class.</p>
+      </details>
+
+      <dialog id="drain-dialog">
+        <form method="dialog">
+          <header><h4>&#xF0026; Drain sms-gw-03?</h4><button class="ghost icon sm" value="cancel" formnovalidate aria-label="Close">&#xF0156;</button></header>
+          <p>New binds move to the other three gateways. Existing sessions close after their current window completes, usually within 30 seconds.</p>
+          <div class="field">
+            <label for="d-reason">Reason</label>
+            <input id="d-reason" name="reason" placeholder="e.g. kernel patch" required>
+          </div>
+          <label><input type="checkbox" name="notify" checked> Notify affected aggregators</label>
+          <footer>
+            <button class="ghost" value="cancel" formnovalidate>Cancel</button>
+            <button class="danger" value="drain">Drain gateway</button>
+          </footer>
+        </form>
+      </dialog>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="type">
+      <h2>Typography</h2>
+      <div class="split">
+        <div class="stack gap-sm">
+          <h1>Heading one</h1>
+          <h2>Heading two</h2>
+          <h3>Heading three</h3>
+          <h4>Heading four</h4>
+          <h5>Heading five</h5>
+          <h6>Heading six</h6>
+        </div>
+        <div>
+          <p>Body text is Hanken Grotesk at weight 450. <strong>Strong is 600.</strong> <a href="#type">Links</a> are underlined softly. <mark>Marked text</mark>, <small>small text</small>, and <abbr title="Delivery report">DLR</abbr> with a title.</p>
+          <p>Inline <code>submit_sm_resp</code> and keys like <kbd>Ctrl</kbd> + <kbd>K</kbd>. Slashed zero for IDs: <span class="mono zero">MSG-00A1F0</span>.</p>
+          <ul>
+            <li>Unordered list item</li>
+            <li>Second item with <code>code</code></li>
+          </ul>
+          <ol>
+            <li>Ordered step</li>
+            <li>Next step</li>
+          </ol>
+          <blockquote>Measure twice, route once.</blockquote>
+        </div>
+      </div>
+<pre><code># JetBrains Mono, weight 450
+$ smppctl bind status --route OA-02
+OA-02  degraded  window=10  inflight=10  dlr_p95=94.0s</code></pre>
+    </section>
+
+    <!-- PROSE -->
+    <section id="prose">
+      <h2>Prose</h2>
+      <article class="prose">
+        <h3>Why the night shift watches DLR time</h3>
+        <p>Submit success tells you the operator accepted a message. It does not tell you the handset got it. The delivery report arrives later, and the gap between the two is where most real trouble hides.</p>
+        <p>When that gap stretches from a few seconds to a minute and a half, something upstream is queueing. The fix is rarely on our side, but <em>knowing early</em> lets the team shift traffic before customers notice. Inline <code>code</code> still uses JetBrains Mono inside prose.</p>
+      </article>
+    </section>
+
+    <!-- THEMING -->
+    <section id="theming">
+      <h2>Theming</h2>
+      <p class="muted">One <code>--accent</code> drives links, primary buttons, focus rings, switches, tabs and tints. Pick a preset (<code>&lt;html data-accent="green"&gt;</code>) or any color (<code>:root { --accent: #198038; }</code>).</p>
+      <div class="row">
+        <div class="group" id="accent-presets">
+          <button class="sm" data-accent="">Blue</button>
+          <button class="sm" data-accent="green">Green</button>
+          <button class="sm" data-accent="teal">Teal</button>
+          <button class="sm" data-accent="purple">Purple</button>
+          <button class="sm" data-accent="orange">Orange</button>
+        </div>
+        <label class="nowrap" for="accent-pick">Custom</label>
+        <input type="color" id="accent-pick" value="#0f62fe">
+      </div>
+      <div class="grid cols-3">
+        <div class="stat">
+          <span class="label">Button text contrast</span>
+          <span class="value" id="c-btn">-</span>
+          <span class="delta" id="c-btn-note">&nbsp;</span>
+        </div>
+        <div class="stat">
+          <span class="label">Link contrast on page</span>
+          <span class="value" id="c-link">-</span>
+          <span class="delta" id="c-link-note">&nbsp;</span>
+        </div>
+        <div class="stack gap-sm">
+          <div class="row"><button class="primary" id="c-sample">&#xF0193; Primary</button><a href="#theming">A link</a><span class="badge primary">badge</span></div>
+          <div class="row"><input type="checkbox" checked aria-label="Sample checkbox"><input type="checkbox" role="switch" checked aria-label="Sample switch"><progress value="60" max="100"></progress></div>
+        </div>
+      </div>
+      <p class="text-sm muted">Guideline: 4.5:1 or more for normal text.</p>
+    </section>
+
+    <!-- ICONS -->
+    <section id="icons">
+      <h2>Icons</h2>
+      <p class="muted">Load <code>dry.icons.css</code>, then type the code into any text, e.g. <code>&lt;h2&gt;&amp;#xF02DC; Home&lt;/h2&gt;</code>. Click an icon to copy its code; hover to see the Nerd Fonts glyph name.</p>
+      <div id="icon-sheet">
+        <!--@@ICONS-->
+        <h6>Navigation</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02DC;" title="md-home"><span class="icon-lg">&#xF02DC;</span><span class="text-sm">home<br><code class="text-xs">&amp;#xF02DC;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF035C;" title="md-menu"><span class="icon-lg">&#xF035C;</span><span class="text-sm">menu<br><code class="text-xs">&amp;#xF035C;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0156;" title="md-close"><span class="icon-lg">&#xF0156;</span><span class="text-sm">close<br><code class="text-xs">&amp;#xF0156;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF005D;" title="md-arrow_up"><span class="icon-lg">&#xF005D;</span><span class="text-sm">arrow-up<br><code class="text-xs">&amp;#xF005D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0045;" title="md-arrow_down"><span class="icon-lg">&#xF0045;</span><span class="text-sm">arrow-down<br><code class="text-xs">&amp;#xF0045;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF004D;" title="md-arrow_left"><span class="icon-lg">&#xF004D;</span><span class="text-sm">arrow-left<br><code class="text-xs">&amp;#xF004D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0054;" title="md-arrow_right"><span class="icon-lg">&#xF0054;</span><span class="text-sm">arrow-right<br><code class="text-xs">&amp;#xF0054;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0143;" title="md-chevron_up"><span class="icon-lg">&#xF0143;</span><span class="text-sm">chevron-up<br><code class="text-xs">&amp;#xF0143;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0140;" title="md-chevron_down"><span class="icon-lg">&#xF0140;</span><span class="text-sm">chevron-down<br><code class="text-xs">&amp;#xF0140;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0141;" title="md-chevron_left"><span class="icon-lg">&#xF0141;</span><span class="text-sm">chevron-left<br><code class="text-xs">&amp;#xF0141;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0142;" title="md-chevron_right"><span class="icon-lg">&#xF0142;</span><span class="text-sm">chevron-right<br><code class="text-xs">&amp;#xF0142;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03CC;" title="md-open_in_new"><span class="icon-lg">&#xF03CC;</span><span class="text-sm">external<br><code class="text-xs">&amp;#xF03CC;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF030D;" title="md-keyboard_backspace"><span class="icon-lg">&#xF030D;</span><span class="text-sm">back<br><code class="text-xs">&amp;#xF030D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0734;" title="md-arrow_right_bold"><span class="icon-lg">&#xF0734;</span><span class="text-sm">forward<br><code class="text-xs">&amp;#xF0734;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01D8;" title="md-dots_horizontal"><span class="icon-lg">&#xF01D8;</span><span class="text-sm">more-h<br><code class="text-xs">&amp;#xF01D8;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01D9;" title="md-dots_vertical"><span class="icon-lg">&#xF01D9;</span><span class="text-sm">more-v<br><code class="text-xs">&amp;#xF01D9;</code></span></div>
+        </div>
+        <h6>Actions</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0415;" title="md-plus"><span class="icon-lg">&#xF0415;</span><span class="text-sm">add<br><code class="text-xs">&amp;#xF0415;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0374;" title="md-minus"><span class="icon-lg">&#xF0374;</span><span class="text-sm">remove<br><code class="text-xs">&amp;#xF0374;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03EB;" title="md-pencil"><span class="icon-lg">&#xF03EB;</span><span class="text-sm">edit<br><code class="text-xs">&amp;#xF03EB;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01B4;" title="md-delete"><span class="icon-lg">&#xF01B4;</span><span class="text-sm">delete<br><code class="text-xs">&amp;#xF01B4;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0193;" title="md-content_save"><span class="icon-lg">&#xF0193;</span><span class="text-sm">save<br><code class="text-xs">&amp;#xF0193;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF018F;" title="md-content_copy"><span class="icon-lg">&#xF018F;</span><span class="text-sm">copy<br><code class="text-xs">&amp;#xF018F;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0192;" title="md-content_paste"><span class="icon-lg">&#xF0192;</span><span class="text-sm">paste<br><code class="text-xs">&amp;#xF0192;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0190;" title="md-content_cut"><span class="icon-lg">&#xF0190;</span><span class="text-sm">cut<br><code class="text-xs">&amp;#xF0190;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0349;" title="md-magnify"><span class="icon-lg">&#xF0349;</span><span class="text-sm">search<br><code class="text-xs">&amp;#xF0349;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0232;" title="md-filter"><span class="icon-lg">&#xF0232;</span><span class="text-sm">filter<br><code class="text-xs">&amp;#xF0232;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04BA;" title="md-sort"><span class="icon-lg">&#xF04BA;</span><span class="text-sm">sort<br><code class="text-xs">&amp;#xF04BA;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04BC;" title="md-sort_ascending"><span class="icon-lg">&#xF04BC;</span><span class="text-sm">sort-asc<br><code class="text-xs">&amp;#xF04BC;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04BD;" title="md-sort_descending"><span class="icon-lg">&#xF04BD;</span><span class="text-sm">sort-desc<br><code class="text-xs">&amp;#xF04BD;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0450;" title="md-refresh"><span class="icon-lg">&#xF0450;</span><span class="text-sm">refresh<br><code class="text-xs">&amp;#xF0450;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF054C;" title="md-undo"><span class="icon-lg">&#xF054C;</span><span class="text-sm">undo<br><code class="text-xs">&amp;#xF054C;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF044E;" title="md-redo"><span class="icon-lg">&#xF044E;</span><span class="text-sm">redo<br><code class="text-xs">&amp;#xF044E;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01DA;" title="md-download"><span class="icon-lg">&#xF01DA;</span><span class="text-sm">download<br><code class="text-xs">&amp;#xF01DA;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0552;" title="md-upload"><span class="icon-lg">&#xF0552;</span><span class="text-sm">upload<br><code class="text-xs">&amp;#xF0552;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0497;" title="md-share_variant"><span class="icon-lg">&#xF0497;</span><span class="text-sm">share<br><code class="text-xs">&amp;#xF0497;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF042A;" title="md-printer"><span class="icon-lg">&#xF042A;</span><span class="text-sm">print<br><code class="text-xs">&amp;#xF042A;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF048A;" title="md-send"><span class="icon-lg">&#xF048A;</span><span class="text-sm">send<br><code class="text-xs">&amp;#xF048A;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0337;" title="md-link"><span class="icon-lg">&#xF0337;</span><span class="text-sm">link<br><code class="text-xs">&amp;#xF0337;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0338;" title="md-link_off"><span class="icon-lg">&#xF0338;</span><span class="text-sm">unlink<br><code class="text-xs">&amp;#xF0338;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0493;" title="md-cog"><span class="icon-lg">&#xF0493;</span><span class="text-sm">settings<br><code class="text-xs">&amp;#xF0493;</code></span></div>
+        </div>
+        <h6>Status</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF012C;" title="md-check"><span class="icon-lg">&#xF012C;</span><span class="text-sm">check<br><code class="text-xs">&amp;#xF012C;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF05E0;" title="md-check_circle"><span class="icon-lg">&#xF05E0;</span><span class="text-sm">check-circle<br><code class="text-xs">&amp;#xF05E0;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0159;" title="md-close_circle"><span class="icon-lg">&#xF0159;</span><span class="text-sm">x-circle<br><code class="text-xs">&amp;#xF0159;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02FC;" title="md-information"><span class="icon-lg">&#xF02FC;</span><span class="text-sm">info<br><code class="text-xs">&amp;#xF02FC;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0026;" title="md-alert"><span class="icon-lg">&#xF0026;</span><span class="text-sm">warning<br><code class="text-xs">&amp;#xF0026;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0029;" title="md-alert_octagon"><span class="icon-lg">&#xF0029;</span><span class="text-sm">error<br><code class="text-xs">&amp;#xF0029;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02D7;" title="md-help_circle"><span class="icon-lg">&#xF02D7;</span><span class="text-sm">help<br><code class="text-xs">&amp;#xF02D7;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF009A;" title="md-bell"><span class="icon-lg">&#xF009A;</span><span class="text-sm">bell<br><code class="text-xs">&amp;#xF009A;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF009B;" title="md-bell_off"><span class="icon-lg">&#xF009B;</span><span class="text-sm">bell-off<br><code class="text-xs">&amp;#xF009B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0772;" title="md-loading"><span class="icon-lg">&#xF0772;</span><span class="text-sm">spinner<br><code class="text-xs">&amp;#xF0772;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0765;" title="md-circle"><span class="icon-lg">&#xF0765;</span><span class="text-sm">dot<br><code class="text-xs">&amp;#xF0765;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0766;" title="md-circle_outline"><span class="icon-lg">&#xF0766;</span><span class="text-sm">dot-outline<br><code class="text-xs">&amp;#xF0766;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0565;" title="md-shield_check"><span class="icon-lg">&#xF0565;</span><span class="text-sm">shield<br><code class="text-xs">&amp;#xF0565;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF073A;" title="md-cancel"><span class="icon-lg">&#xF073A;</span><span class="text-sm">ban<br><code class="text-xs">&amp;#xF073A;</code></span></div>
+        </div>
+        <h6>Files</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0214;" title="md-file"><span class="icon-lg">&#xF0214;</span><span class="text-sm">file<br><code class="text-xs">&amp;#xF0214;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0219;" title="md-file_document"><span class="icon-lg">&#xF0219;</span><span class="text-sm">file-text<br><code class="text-xs">&amp;#xF0219;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF022E;" title="md-file_code"><span class="icon-lg">&#xF022E;</span><span class="text-sm">file-code<br><code class="text-xs">&amp;#xF022E;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0226;" title="md-file_pdf_box"><span class="icon-lg">&#xF0226;</span><span class="text-sm">file-pdf<br><code class="text-xs">&amp;#xF0226;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF021B;" title="md-file_excel"><span class="icon-lg">&#xF021B;</span><span class="text-sm">spreadsheet<br><code class="text-xs">&amp;#xF021B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02E9;" title="md-image"><span class="icon-lg">&#xF02E9;</span><span class="text-sm">image<br><code class="text-xs">&amp;#xF02E9;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF024B;" title="md-folder"><span class="icon-lg">&#xF024B;</span><span class="text-sm">folder<br><code class="text-xs">&amp;#xF024B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0770;" title="md-folder_open"><span class="icon-lg">&#xF0770;</span><span class="text-sm">folder-open<br><code class="text-xs">&amp;#xF0770;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF003C;" title="md-archive"><span class="icon-lg">&#xF003C;</span><span class="text-sm">archive<br><code class="text-xs">&amp;#xF003C;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03E2;" title="md-paperclip"><span class="icon-lg">&#xF03E2;</span><span class="text-sm">attachment<br><code class="text-xs">&amp;#xF03E2;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF014D;" title="md-clipboard_text"><span class="icon-lg">&#xF014D;</span><span class="text-sm">clipboard<br><code class="text-xs">&amp;#xF014D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF14F7;" title="md-book_open_variant"><span class="icon-lg">&#xF14F7;</span><span class="text-sm">book<br><code class="text-xs">&amp;#xF14F7;</code></span></div>
+        </div>
+        <h6>Users and access</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0004;" title="md-account"><span class="icon-lg">&#xF0004;</span><span class="text-sm">user<br><code class="text-xs">&amp;#xF0004;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0849;" title="md-account_group"><span class="icon-lg">&#xF0849;</span><span class="text-sm">users<br><code class="text-xs">&amp;#xF0849;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0014;" title="md-account_plus"><span class="icon-lg">&#xF0014;</span><span class="text-sm">user-add<br><code class="text-xs">&amp;#xF0014;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF000D;" title="md-account_minus"><span class="icon-lg">&#xF000D;</span><span class="text-sm">user-remove<br><code class="text-xs">&amp;#xF000D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF05D2;" title="md-card_account_details"><span class="icon-lg">&#xF05D2;</span><span class="text-sm">id-card<br><code class="text-xs">&amp;#xF05D2;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0342;" title="md-login"><span class="icon-lg">&#xF0342;</span><span class="text-sm">login<br><code class="text-xs">&amp;#xF0342;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0343;" title="md-logout"><span class="icon-lg">&#xF0343;</span><span class="text-sm">logout<br><code class="text-xs">&amp;#xF0343;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF033E;" title="md-lock"><span class="icon-lg">&#xF033E;</span><span class="text-sm">lock<br><code class="text-xs">&amp;#xF033E;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0FC6;" title="md-lock_open_variant"><span class="icon-lg">&#xF0FC6;</span><span class="text-sm">unlock<br><code class="text-xs">&amp;#xF0FC6;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0306;" title="md-key"><span class="icon-lg">&#xF0306;</span><span class="text-sm">key<br><code class="text-xs">&amp;#xF0306;</code></span></div>
+        </div>
+        <h6>Communication</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01EE;" title="md-email"><span class="icon-lg">&#xF01EE;</span><span class="text-sm">mail<br><code class="text-xs">&amp;#xF01EE;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0687;" title="md-inbox"><span class="icon-lg">&#xF0687;</span><span class="text-sm">inbox<br><code class="text-xs">&amp;#xF0687;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0B79;" title="md-chat"><span class="icon-lg">&#xF0B79;</span><span class="text-sm">chat<br><code class="text-xs">&amp;#xF0B79;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0188;" title="md-comment_text"><span class="icon-lg">&#xF0188;</span><span class="text-sm">comment<br><code class="text-xs">&amp;#xF0188;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03F2;" title="md-phone"><span class="icon-lg">&#xF03F2;</span><span class="text-sm">phone<br><code class="text-xs">&amp;#xF03F2;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF011C;" title="md-cellphone"><span class="icon-lg">&#xF011C;</span><span class="text-sm">mobile<br><code class="text-xs">&amp;#xF011C;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0369;" title="md-message_text"><span class="icon-lg">&#xF0369;</span><span class="text-sm">sms<br><code class="text-xs">&amp;#xF0369;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0065;" title="md-at"><span class="icon-lg">&#xF0065;</span><span class="text-sm">at<br><code class="text-xs">&amp;#xF0065;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF00E6;" title="md-bullhorn"><span class="icon-lg">&#xF00E6;</span><span class="text-sm">megaphone<br><code class="text-xs">&amp;#xF00E6;</code></span></div>
+        </div>
+        <h6>Data</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0128;" title="md-chart_bar"><span class="icon-lg">&#xF0128;</span><span class="text-sm">chart-bar<br><code class="text-xs">&amp;#xF0128;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF012A;" title="md-chart_line"><span class="icon-lg">&#xF012A;</span><span class="text-sm">chart-line<br><code class="text-xs">&amp;#xF012A;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF012B;" title="md-chart_pie"><span class="icon-lg">&#xF012B;</span><span class="text-sm">chart-pie<br><code class="text-xs">&amp;#xF012B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0535;" title="md-trending_up"><span class="icon-lg">&#xF0535;</span><span class="text-sm">trend-up<br><code class="text-xs">&amp;#xF0535;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0533;" title="md-trending_down"><span class="icon-lg">&#xF0533;</span><span class="text-sm">trend-down<br><code class="text-xs">&amp;#xF0533;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04EB;" title="md-table"><span class="icon-lg">&#xF04EB;</span><span class="text-sm">table<br><code class="text-xs">&amp;#xF04EB;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0279;" title="md-format_list_bulleted"><span class="icon-lg">&#xF0279;</span><span class="text-sm">list<br><code class="text-xs">&amp;#xF0279;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0570;" title="md-view_grid"><span class="icon-lg">&#xF0570;</span><span class="text-sm">grid<br><code class="text-xs">&amp;#xF0570;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01BC;" title="md-database"><span class="icon-lg">&#xF01BC;</span><span class="text-sm">database<br><code class="text-xs">&amp;#xF01BC;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0430;" title="md-pulse"><span class="icon-lg">&#xF0430;</span><span class="text-sm">pulse<br><code class="text-xs">&amp;#xF0430;</code></span></div>
+        </div>
+        <h6>Time</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF00ED;" title="md-calendar"><span class="icon-lg">&#xF00ED;</span><span class="text-sm">calendar<br><code class="text-xs">&amp;#xF00ED;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0150;" title="md-clock_outline"><span class="icon-lg">&#xF0150;</span><span class="text-sm">clock<br><code class="text-xs">&amp;#xF0150;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02DA;" title="md-history"><span class="icon-lg">&#xF02DA;</span><span class="text-sm">history<br><code class="text-xs">&amp;#xF02DA;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF051B;" title="md-timer_outline"><span class="icon-lg">&#xF051B;</span><span class="text-sm">timer<br><code class="text-xs">&amp;#xF051B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0020;" title="md-alarm"><span class="icon-lg">&#xF0020;</span><span class="text-sm">alarm<br><code class="text-xs">&amp;#xF0020;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF051F;" title="md-timer_sand"><span class="icon-lg">&#xF051F;</span><span class="text-sm">hourglass<br><code class="text-xs">&amp;#xF051F;</code></span></div>
+        </div>
+        <h6>Infra and ops</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF048B;" title="md-server"><span class="icon-lg">&#xF048B;</span><span class="text-sm">server<br><code class="text-xs">&amp;#xF048B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF015F;" title="md-cloud"><span class="icon-lg">&#xF015F;</span><span class="text-sm">cloud<br><code class="text-xs">&amp;#xF015F;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0167;" title="md-cloud_upload"><span class="icon-lg">&#xF0167;</span><span class="text-sm">cloud-up<br><code class="text-xs">&amp;#xF0167;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0162;" title="md-cloud_download"><span class="icon-lg">&#xF0162;</span><span class="text-sm">cloud-down<br><code class="text-xs">&amp;#xF0162;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0317;" title="md-lan"><span class="icon-lg">&#xF0317;</span><span class="text-sm">network<br><code class="text-xs">&amp;#xF0317;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF05A9;" title="md-wifi"><span class="icon-lg">&#xF05A9;</span><span class="text-sm">wifi<br><code class="text-xs">&amp;#xF05A9;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF05AA;" title="md-wifi_off"><span class="icon-lg">&#xF05AA;</span><span class="text-sm">wifi-off<br><code class="text-xs">&amp;#xF05AA;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF1119;" title="md-antenna"><span class="icon-lg">&#xF1119;</span><span class="text-sm">antenna<br><code class="text-xs">&amp;#xF1119;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF06A5;" title="md-power_plug"><span class="icon-lg">&#xF06A5;</span><span class="text-sm">plug<br><code class="text-xs">&amp;#xF06A5;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0425;" title="md-power"><span class="icon-lg">&#xF0425;</span><span class="text-sm">power<br><code class="text-xs">&amp;#xF0425;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF061A;" title="md-chip"><span class="icon-lg">&#xF061A;</span><span class="text-sm">cpu<br><code class="text-xs">&amp;#xF061A;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF035B;" title="md-memory"><span class="icon-lg">&#xF035B;</span><span class="text-sm">memory<br><code class="text-xs">&amp;#xF035B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02CA;" title="md-harddisk"><span class="icon-lg">&#xF02CA;</span><span class="text-sm">disk<br><code class="text-xs">&amp;#xF02CA;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF018D;" title="md-console"><span class="icon-lg">&#xF018D;</span><span class="text-sm">terminal<br><code class="text-xs">&amp;#xF018D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0174;" title="md-code_tags"><span class="icon-lg">&#xF0174;</span><span class="text-sm">code<br><code class="text-xs">&amp;#xF0174;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF00E4;" title="md-bug"><span class="icon-lg">&#xF00E4;</span><span class="text-sm">bug<br><code class="text-xs">&amp;#xF00E4;</code></span></div>
+        </div>
+        <h6>Dev and brands</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF062C;" title="md-source_branch"><span class="icon-lg">&#xF062C;</span><span class="text-sm">branch<br><code class="text-xs">&amp;#xF062C;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0718;" title="md-source_commit"><span class="icon-lg">&#xF0718;</span><span class="text-sm">commit<br><code class="text-xs">&amp;#xF0718;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF062D;" title="md-source_merge"><span class="icon-lg">&#xF062D;</span><span class="text-sm">merge<br><code class="text-xs">&amp;#xF062D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04C2;" title="md-source_pull"><span class="icon-lg">&#xF04C2;</span><span class="text-sm">pull-request<br><code class="text-xs">&amp;#xF04C2;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02A4;" title="md-github"><span class="icon-lg">&#xF02A4;</span><span class="text-sm">github<br><code class="text-xs">&amp;#xF02A4;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0BA0;" title="md-gitlab"><span class="icon-lg">&#xF0BA0;</span><span class="text-sm">gitlab<br><code class="text-xs">&amp;#xF0BA0;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0868;" title="md-docker"><span class="icon-lg">&#xF0868;</span><span class="text-sm">docker<br><code class="text-xs">&amp;#xF0868;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF033D;" title="md-linux"><span class="icon-lg">&#xF033D;</span><span class="text-sm">linux<br><code class="text-xs">&amp;#xF033D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0035;" title="md-apple"><span class="icon-lg">&#xF0035;</span><span class="text-sm">apple<br><code class="text-xs">&amp;#xF0035;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF05B3;" title="md-microsoft_windows"><span class="icon-lg">&#xF05B3;</span><span class="text-sm">windows<br><code class="text-xs">&amp;#xF05B3;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0032;" title="md-android"><span class="icon-lg">&#xF0032;</span><span class="text-sm">android<br><code class="text-xs">&amp;#xF0032;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02AD;" title="md-google"><span class="icon-lg">&#xF02AD;</span><span class="text-sm">google<br><code class="text-xs">&amp;#xF02AD;</code></span></div>
+        </div>
+        <h6>Money</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0110;" title="md-cart"><span class="icon-lg">&#xF0110;</span><span class="text-sm">cart<br><code class="text-xs">&amp;#xF0110;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0FEF;" title="md-credit_card"><span class="icon-lg">&#xF0FEF;</span><span class="text-sm">card<br><code class="text-xs">&amp;#xF0FEF;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0584;" title="md-wallet"><span class="icon-lg">&#xF0584;</span><span class="text-sm">wallet<br><code class="text-xs">&amp;#xF0584;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0070;" title="md-bank"><span class="icon-lg">&#xF0070;</span><span class="text-sm">bank<br><code class="text-xs">&amp;#xF0070;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0449;" title="md-receipt"><span class="icon-lg">&#xF0449;</span><span class="text-sm">receipt<br><code class="text-xs">&amp;#xF0449;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04F9;" title="md-tag"><span class="icon-lg">&#xF04F9;</span><span class="text-sm">tag<br><code class="text-xs">&amp;#xF04F9;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03F0;" title="md-percent"><span class="icon-lg">&#xF03F0;</span><span class="text-sm">percent<br><code class="text-xs">&amp;#xF03F0;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0114;" title="md-cash"><span class="icon-lg">&#xF0114;</span><span class="text-sm">currency<br><code class="text-xs">&amp;#xF0114;</code></span></div>
+        </div>
+        <h6>Media</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF040A;" title="md-play"><span class="icon-lg">&#xF040A;</span><span class="text-sm">play<br><code class="text-xs">&amp;#xF040A;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03E4;" title="md-pause"><span class="icon-lg">&#xF03E4;</span><span class="text-sm">pause<br><code class="text-xs">&amp;#xF03E4;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04DB;" title="md-stop"><span class="icon-lg">&#xF04DB;</span><span class="text-sm">stop<br><code class="text-xs">&amp;#xF04DB;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF057E;" title="md-volume_high"><span class="icon-lg">&#xF057E;</span><span class="text-sm">volume<br><code class="text-xs">&amp;#xF057E;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0581;" title="md-volume_off"><span class="icon-lg">&#xF0581;</span><span class="text-sm">mute<br><code class="text-xs">&amp;#xF0581;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0100;" title="md-camera"><span class="icon-lg">&#xF0100;</span><span class="text-sm">camera<br><code class="text-xs">&amp;#xF0100;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0567;" title="md-video"><span class="icon-lg">&#xF0567;</span><span class="text-sm">video<br><code class="text-xs">&amp;#xF0567;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF036C;" title="md-microphone"><span class="icon-lg">&#xF036C;</span><span class="text-sm">mic<br><code class="text-xs">&amp;#xF036C;</code></span></div>
+        </div>
+        <h6>View</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0208;" title="md-eye"><span class="icon-lg">&#xF0208;</span><span class="text-sm">eye<br><code class="text-xs">&amp;#xF0208;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0209;" title="md-eye_off"><span class="icon-lg">&#xF0209;</span><span class="text-sm">eye-off<br><code class="text-xs">&amp;#xF0209;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0616;" title="md-arrow_expand"><span class="icon-lg">&#xF0616;</span><span class="text-sm">expand<br><code class="text-xs">&amp;#xF0616;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0615;" title="md-arrow_collapse"><span class="icon-lg">&#xF0615;</span><span class="text-sm">collapse<br><code class="text-xs">&amp;#xF0615;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0293;" title="md-fullscreen"><span class="icon-lg">&#xF0293;</span><span class="text-sm">maximize<br><code class="text-xs">&amp;#xF0293;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0294;" title="md-fullscreen_exit"><span class="icon-lg">&#xF0294;</span><span class="text-sm">minimize<br><code class="text-xs">&amp;#xF0294;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF056D;" title="md-view_column"><span class="icon-lg">&#xF056D;</span><span class="text-sm">columns<br><code class="text-xs">&amp;#xF056D;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0403;" title="md-pin"><span class="icon-lg">&#xF0403;</span><span class="text-sm">pin<br><code class="text-xs">&amp;#xF0403;</code></span></div>
+        </div>
+        <h6>Misc</h6>
+        <div class="grid cols-6 gap-sm">
+          <div class="row nowrap gap-sm" data-code="&amp;#xF12A8;" title="md-gesture_tap_button"><span class="icon-lg">&#xF12A8;</span><span class="text-sm">tap<br><code class="text-xs">&amp;#xF12A8;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF03D8;" title="md-palette"><span class="icon-lg">&#xF03D8;</span><span class="text-sm">palette<br><code class="text-xs">&amp;#xF03D8;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF056E;" title="md-view_dashboard"><span class="icon-lg">&#xF056E;</span><span class="text-sm">dashboard<br><code class="text-xs">&amp;#xF056E;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF1401;" title="md-form_select"><span class="icon-lg">&#xF1401;</span><span class="text-sm">form<br><code class="text-xs">&amp;#xF1401;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0278;" title="md-format_line_spacing"><span class="icon-lg">&#xF0278;</span><span class="text-sm">density<br><code class="text-xs">&amp;#xF0278;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04CE;" title="md-star"><span class="icon-lg">&#xF04CE;</span><span class="text-sm">star<br><code class="text-xs">&amp;#xF04CE;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF04D2;" title="md-star_outline"><span class="icon-lg">&#xF04D2;</span><span class="text-sm">star-outline<br><code class="text-xs">&amp;#xF04D2;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF02D1;" title="md-heart"><span class="icon-lg">&#xF02D1;</span><span class="text-sm">heart<br><code class="text-xs">&amp;#xF02D1;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF00C0;" title="md-bookmark"><span class="icon-lg">&#xF00C0;</span><span class="text-sm">bookmark<br><code class="text-xs">&amp;#xF00C0;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF023B;" title="md-flag"><span class="icon-lg">&#xF023B;</span><span class="text-sm">flag<br><code class="text-xs">&amp;#xF023B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF034E;" title="md-map_marker"><span class="icon-lg">&#xF034E;</span><span class="text-sm">map-pin<br><code class="text-xs">&amp;#xF034E;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF01E7;" title="md-earth"><span class="icon-lg">&#xF01E7;</span><span class="text-sm">globe<br><code class="text-xs">&amp;#xF01E7;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0599;" title="md-weather_sunny"><span class="icon-lg">&#xF0599;</span><span class="text-sm">sun<br><code class="text-xs">&amp;#xF0599;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0594;" title="md-weather_night"><span class="icon-lg">&#xF0594;</span><span class="text-sm">moon<br><code class="text-xs">&amp;#xF0594;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF140B;" title="md-lightning_bolt"><span class="icon-lg">&#xF140B;</span><span class="text-sm">bolt<br><code class="text-xs">&amp;#xF140B;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF0336;" title="md-lightbulb_outline"><span class="icon-lg">&#xF0336;</span><span class="text-sm">bulb<br><code class="text-xs">&amp;#xF0336;</code></span></div>
+          <div class="row nowrap gap-sm" data-code="&amp;#xF05B7;" title="md-wrench"><span class="icon-lg">&#xF05B7;</span><span class="text-sm">wrench<br><code class="text-xs">&amp;#xF05B7;</code></span></div>
+        </div>
+      <!--@@/ICONS-->
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const $ = id => document.getElementById(id);
+  const pref = matchMedia('(prefers-color-scheme: dark)');
+
+  function toast(text, tone) {
+    const el = document.createElement('div');
+    el.className = 'toast ' + (tone || '');
+    el.textContent = text;
+    $('toasts').append(el);
+    setTimeout(() => el.remove(), 3500);
+  }
+
+  $('theme-btn').addEventListener('click', () => {
+    const cur = root.dataset.theme || (pref.matches ? 'dark' : 'light');
+    root.dataset.theme = cur === 'dark' ? 'light' : 'dark';
+    setTimeout(checkContrast, 250);
+  });
+  $('density-btn').addEventListener('click', e => {
+    const on = root.dataset.density !== 'compact';
+    if (on) root.dataset.density = 'compact'; else delete root.dataset.density;
+    e.currentTarget.classList.toggle('primary', on);
+    e.currentTarget.classList.toggle('ghost', !on);
+  });
+
+  // close the drawer after picking a link on a phone
+  const side = $('side');
+  side.addEventListener('click', e => {
+    if (e.target.closest('a') && side.matches(':popover-open')) side.hidePopover();
+  });
+
+  const table = $('route-table');
+  $('compact-toggle').addEventListener('change', e => {
+    table.classList.toggle('compact', e.target.checked);
+    table.classList.toggle('striped', e.target.checked);
+  });
+  const retry = $('f-retry');
+  retry.addEventListener('input', () => { $('f-retry-out').textContent = retry.value; });
+  $('demo-form').addEventListener('submit', e => { e.preventDefault(); toast('Route OA-03 saved.', 'ok'); });
+  $('drain-dialog').addEventListener('close', e => {
+    if (e.target.returnValue === 'drain') toast('sms-gw-03 is draining.', 'warn');
+  });
+  document.querySelectorAll('.tabs [role=tab]').forEach(t => t.addEventListener('click', () => {
+    t.parentElement.querySelectorAll('[role=tab]').forEach(x => x.setAttribute('aria-selected', x === t));
+  }));
+  document.addEventListener('click', e => {
+    document.querySelectorAll('details.dropdown[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
+  });
+  $('toast-btn').addEventListener('click', () => toast('Bind OA-02 recovered. DLR p95 is 7.9 s.', 'ok'));
+  document.querySelectorAll('[data-code]').forEach(c => c.addEventListener('click', () => {
+    const code = c.dataset.code;
+    const done = () => toast('Copied ' + code);
+    try { navigator.clipboard.writeText(code).then(done, () => toast(code)); } catch { toast(code); }
+  }));
+
+  // theming: presets, custom color, live contrast readout
+  const cv = document.createElement('canvas'); cv.width = cv.height = 1;
+  const cx = cv.getContext('2d', { willReadFrequently: true });
+  function rgb(css) {
+    cx.clearRect(0, 0, 1, 1); cx.fillStyle = '#000'; cx.fillStyle = css; cx.fillRect(0, 0, 1, 1);
+    return [...cx.getImageData(0, 0, 1, 1).data].slice(0, 3);
+  }
+  function lum([r, g, b]) {
+    const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; };
+    return .2126 * f(r) + .7152 * f(g) + .0722 * f(b);
+  }
+  function ratio(a, b) {
+    const [x, y] = [lum(rgb(a)), lum(rgb(b))].sort((m, n) => n - m);
+    return (x + .05) / (y + .05);
+  }
+  function show(id, r) {
+    $(id).textContent = r.toFixed(1) + ' : 1';
+    const note = $(id + '-note');
+    note.textContent = r >= 4.5 ? 'passes 4.5:1' : r >= 3 ? 'large text only' : 'too low';
+    note.className = 'delta ' + (r >= 4.5 ? 'up' : 'down');
+  }
+  function checkContrast() {
+    const b = getComputedStyle($('c-sample'));
+    const a = getComputedStyle(document.querySelector('#theming a'));
+    show('c-btn', ratio(b.color, b.backgroundColor));
+    show('c-link', ratio(a.color, getComputedStyle(document.body).backgroundColor));
+  }
+  function markPreset(name) {
+    document.querySelectorAll('#accent-presets button').forEach(b => b.classList.toggle('primary', b.dataset.accent === name));
+  }
+  document.querySelectorAll('#accent-presets button').forEach(b => b.addEventListener('click', () => {
+    root.style.removeProperty('--accent');
+    if (b.dataset.accent) root.dataset.accent = b.dataset.accent; else delete root.dataset.accent;
+    markPreset(b.dataset.accent);
+    $('accent-pick').value = '#' + rgb(getComputedStyle(root).getPropertyValue('--accent').trim()).map(v => v.toString(16).padStart(2, '0')).join('');
+    setTimeout(checkContrast, 250);
+  }));
+  $('accent-pick').addEventListener('input', e => {
+    delete root.dataset.accent;
+    root.style.setProperty('--accent', e.target.value);
+    markPreset(null);
+    setTimeout(checkContrast, 250);
+  });
+  pref.addEventListener('change', () => setTimeout(checkContrast, 250));
+  markPreset('');
+  checkContrast();
+})();
+</script>
+</body>
+</html>

@@ -5,7 +5,7 @@ Usage:
   python3 tools/build.py
       Writes dist/dry.css, dist/dry.min.css, dist/dry.icons.css and
       dist/dry.icons.min.css, and refreshes the icon cheat sheet in docs.html
-      (and templates/demo.html when present). Needs only Python 3.
+      (and templates/showcase.html when present). Needs only Python 3.
 
   python3 tools/build.py --fonts <fonts-dir> [<symbols-nerd-font.ttf>]
       Same, after re-subsetting the fonts first (needs fonttools and brotli):
@@ -182,7 +182,7 @@ def build_cheatsheet():
                     f'<span class="icon-lg">&#x{d["code"]};</span>'
                     f'<span class="text-sm">{d["name"]}<br><code class="text-xs">&amp;#x{d["code"]};</code></span></div>')
     rows.append('        </div>')
-    for page in ("docs.html", "templates/demo.html"):
+    for page in ("docs.html", "templates/showcase.html"):
         path = os.path.join(ROOT, page)
         if not os.path.exists(path):
             continue
