@@ -81,9 +81,20 @@ All rules live in a cascade layer named `desk`. CSS written outside a layer alwa
 
 ## Browser support
 
-Current Chrome, Edge, Firefox and Safari. desk.css relies on recent CSS (`light-dark()`, relative colors, `:has()`, popover); older browsers are not a target.
+Target: the latest stable release of Chrome, Edge, Firefox and Safari. Older versions are not supported.
 
-The docs and templates open dialogs with `commandfor` and `command="show-modal"`, which needs Chrome or Edge 135, Firefox 144, or Safari 26.2. In older browsers those buttons do nothing; a dialog can still be opened with `showModal()` in script. The stylesheet itself does not depend on these attributes.
+Tested: Chromium 153 (Chrome for Testing, the engine behind Chrome and Edge), with layout checks in Playwright and accessibility checks in axe-core. Firefox and Safari are not tested yet.
+
+Minimum versions, from the web-features dataset (3.45.0) that Baseline is built on:
+
+| | Chrome, Edge | Firefox | Safari |
+| --- | --- | --- | --- |
+| Stylesheet | 125 | 128 | 18 |
+| Dialog buttons in the docs and templates | 135 | 144 | 26.2 |
+
+The stylesheet needs `light-dark()` and relative colors (`oklch(from ...)`), which set the floor above. `:has()`, cascade layers, popover and `color-mix()` are older. A few details fall back quietly instead of breaking: `accent-color` before Safari 26.2, `scrollbar-width` before Safari 18.2, and `text-wrap: balance`.
+
+The dialog buttons in the docs and templates use `commandfor` and `command="show-modal"`. In older browsers those buttons do nothing; a dialog can still be opened with `showModal()` in script. The stylesheet itself does not depend on these attributes.
 
 ## Building
 

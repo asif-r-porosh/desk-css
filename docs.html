@@ -791,7 +791,12 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
     <section id="limits">
       <h2>Rules and limits</h2>
       <h3>Browser support</h3>
-      <p>Current Chrome, Edge, Firefox and Safari. desk.css relies on <code>light-dark()</code>, relative colors, <code>:has()</code>, cascade layers and popover (all browsers since 2024). Opening dialogs with <code>commandfor</code> needs Chrome 135, Firefox 144 or Safari 26.2. Automatic black or white button text uses <code>contrast-color()</code>; older browsers get white.</p>
+      <p>Target: the latest stable release of Chrome, Edge, Firefox and Safari. Tested: Chromium 153 (the engine behind Chrome and Edge). Firefox and Safari are not tested yet.</p>
+      <ul>
+        <li>The stylesheet needs Chrome or Edge 125, Firefox 128, Safari 18. These versions set the floor through <code>light-dark()</code> and relative colors; <code>:has()</code>, cascade layers, popover and <code>color-mix()</code> are older.</li>
+        <li>Opening dialogs with <code>commandfor</code> needs Chrome or Edge 135, Firefox 144, Safari 26.2. Older browsers ignore those buttons; <code>showModal()</code> in script still works.</li>
+        <li>Small details fall back quietly: <code>accent-color</code> before Safari 26.2, <code>scrollbar-width</code> before Safari 18.2, <code>text-wrap: balance</code>, and <code>contrast-color()</code> (button text is white without it).</li>
+      </ul>
       <h3>Deliberately left out</h3>
       <ul>
         <li>A 12-column grid. <code>.grid</code> and <code>.cols-N</code> cover real layouts without breakpoint classes.</li>
