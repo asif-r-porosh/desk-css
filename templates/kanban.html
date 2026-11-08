@@ -12,11 +12,11 @@
   .board { display: flex; gap: var(--s-4); align-items: flex-start; overflow-x: auto; padding-bottom: var(--s-3); scroll-snap-type: x proximity; }
   .col { flex: 1 0 16rem; max-width: 24rem; scroll-snap-align: start; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-3); }
   .col > header { margin-bottom: var(--s-3); padding-inline: var(--s-1); }
-  .col > header h4 { margin: 0; font-size: var(--fs-md); }
+  .col > header h2 { margin: 0; font-size: var(--fs-md); }
   .col .card { padding: var(--s-3); margin: 0; }
   .col .card .stack, .col .card .row { margin-bottom: 0; }
   .col .card > * + * { margin-top: var(--s-3); }
-  .col .card h5 { margin: 0; font-size: var(--fs-md); font-weight: var(--w-bold); line-height: 1.3; }
+  .col .card h3 { margin: 0; font-size: var(--fs-md); font-weight: var(--w-bold); line-height: 1.3; }
   .col .card .row.top > .ghost { margin: calc(-1 * var(--s-1)) calc(-1 * var(--s-1)) 0 0; }
   .avatar { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; flex: none; border-radius: 50%;
             background: var(--accent-bg); color: var(--accent-ink); font-size: var(--fs-xs); font-weight: var(--w-bold); }
@@ -80,13 +80,13 @@
       <div class="board">
       <section class="col" aria-label="Backlog">
         <header class="row nowrap between">
-          <h4>Backlog <span class="badge">4</span></h4>
+          <h2>Backlog <span class="badge">4</span></h2>
           <button class="ghost icon sm" aria-label="Add a card to Backlog" commandfor="new-card" command="show-modal">&#xF0415;</button>
         </header>
         <div class="stack">
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Write the onboarding checklist</h5>
+            <h3>Write the onboarding checklist</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge info">Docs</span>
@@ -97,7 +97,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Pick a date for the user interviews</h5>
+            <h3>Pick a date for the user interviews</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge warn">Research</span>
@@ -108,7 +108,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Review the icon set for gaps</h5>
+            <h3>Review the icon set for gaps</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge ">Design</span>
@@ -119,7 +119,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Plan the winter release notes</h5>
+            <h3>Plan the winter release notes</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge info">Docs</span>
@@ -133,13 +133,13 @@
 
       <section class="col" aria-label="In progress">
         <header class="row nowrap between">
-          <h4>In progress <span class="badge">3</span></h4>
+          <h2>In progress <span class="badge">3</span></h2>
           <button class="ghost icon sm" aria-label="Add a card to In progress" commandfor="new-card" command="show-modal">&#xF0415;</button>
         </header>
         <div class="stack">
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Rebuild the settings screen</h5>
+            <h3>Rebuild the settings screen</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge ">Design</span>
@@ -154,7 +154,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Fix the export timeout</h5>
+            <h3>Fix the export timeout</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge danger">Bug</span>
@@ -169,7 +169,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Set up the weekly summary email</h5>
+            <h3>Set up the weekly summary email</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge ok">Feature</span>
@@ -187,13 +187,13 @@
 
       <section class="col" aria-label="Review">
         <header class="row nowrap between">
-          <h4>Review <span class="badge">2</span></h4>
+          <h2>Review <span class="badge">2</span></h2>
           <button class="ghost icon sm" aria-label="Add a card to Review" commandfor="new-card" command="show-modal">&#xF0415;</button>
         </header>
         <div class="stack">
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Update the pricing page copy</h5>
+            <h3>Update the pricing page copy</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge info">Docs</span>
@@ -204,7 +204,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Add keyboard shortcuts to the table</h5>
+            <h3>Add keyboard shortcuts to the table</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge ok">Feature</span>
@@ -218,13 +218,13 @@
 
       <section class="col" aria-label="Done">
         <header class="row nowrap between">
-          <h4>Done <span class="badge">3</span></h4>
+          <h2>Done <span class="badge">3</span></h2>
           <button class="ghost icon sm" aria-label="Add a card to Done" commandfor="new-card" command="show-modal">&#xF0415;</button>
         </header>
         <div class="stack">
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Move the docs to the new layout</h5>
+            <h3>Move the docs to the new layout</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge info">Docs</span>
@@ -235,7 +235,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Fix the login redirect loop</h5>
+            <h3>Fix the login redirect loop</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge danger">Bug</span>
@@ -246,7 +246,7 @@
         </article>
         <article class="card">
           <div class="row nowrap between top">
-            <h5>Choose a font for the app</h5>
+            <h3>Choose a font for the app</h3>
             <button class="ghost icon sm" aria-label="Card actions">&#xF01D9;</button>
           </div>
           <span class="badge ">Design</span>
@@ -265,7 +265,7 @@
 <dialog id="new-card">
   <form method="dialog">
     <header>
-      <h4>New card</h4>
+      <h2>New card</h2>
       <button class="ghost icon sm" value="cancel" formnovalidate aria-label="Close">&#xF0156;</button>
     </header>
     <div class="field">
