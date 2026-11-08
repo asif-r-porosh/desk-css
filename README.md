@@ -85,6 +85,8 @@ All rules live in a cascade layer named `dry`. CSS written outside a layer alway
 
 Current Chrome, Edge, Firefox and Safari. dry.css relies on recent CSS (`light-dark()`, relative colors, `:has()`, popover); older browsers are not a target.
 
+The docs and templates open dialogs with `commandfor` and `command="show-modal"`, which needs Chrome or Edge 135, Firefox 144, or Safari 26.2. In older browsers those buttons do nothing; a dialog can still be opened with `showModal()` in script. The stylesheet itself does not depend on these attributes.
+
 ## Building
 
 `dist/` is generated from `src/`. Edit `src/dry.css`, then run:
