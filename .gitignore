@@ -15,3 +15,6 @@ Icon?
 
 # Python
 __pycache__/
+
+# Files the desktop app saves into the project
+Claude outputs/
