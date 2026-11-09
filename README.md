@@ -83,7 +83,7 @@ All rules live in a cascade layer named `desk`. CSS written outside a layer alwa
 
 Target: the latest stable release of Chrome, Edge, Firefox and Safari. Older versions are not supported.
 
-Tested: Chromium 153 (Chrome for Testing, the engine behind Chrome and Edge), with layout checks in Playwright and accessibility checks in axe-core. Firefox and Safari are not tested yet.
+Tested: Chromium 153 (Chrome for Testing, the engine behind Chrome and Edge), Firefox 159 and Safari 26.6 on macOS. Each run covers layout, fonts, light and dark colors, dialogs, the phone drawer and accessibility (axe-core) on the docs page and the templates. Edge is not run separately. A real phone is not covered. The checks are in `tests/browser/` and run with `tests/browser/run.sh firefox safari`.
 
 Minimum versions, from the web-features dataset (3.45.0) that Baseline is built on:
 
