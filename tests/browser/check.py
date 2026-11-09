@@ -35,6 +35,7 @@ OUT = HERE / "out"
 PAGES = ["docs.html", "templates/inbox.html", "templates/dashboard.html",
          "templates/kanban.html", "templates/showcase.html"]
 WIDTHS = [1440, 700, 390]          # requested; the browser may refuse the narrowest
+GRID_WIDTHS = [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1440]   # .grid.cols-4 must never show 3 + 1
 FILE_PAGES = ["docs.html", "templates/inbox.html"]   # also opened straight from disk
 AXE_VERSION = "4.10.2"
 AXE_SHA256 = "b511cd9dec01c76f4b2ad1723b66b6db37d4c2eb4ed199076e1829d9ee7b75e3"
@@ -160,6 +161,13 @@ const list = document.querySelector('.list');
 return {hash: location.hash, scrollY: Math.round(scrollY), shownCount: shown.length,
         shownId: shown[0] && shown[0].previousElementSibling ? shown[0].previousElementSibling.id : null,
         listShown: list ? getComputedStyle(list).display !== 'none' : null};
+"""
+
+JS_GRID4 = """
+const g = document.querySelector('.grid.cols-4');
+if (!g) return null;
+return {columns: getComputedStyle(g).gridTemplateColumns.split(' ').length, items: g.children.length,
+        width: Math.round(g.getBoundingClientRect().width)};
 """
 
 JS_AXE = """
@@ -339,6 +347,16 @@ def check_browser(name, base):
                 except Exception as e:
                     wr["error"] = f"{type(e).__name__}: {str(e).splitlines()[0][:200] if str(e) else ''}"
                     traceback.print_exc(limit=1)
+        # .grid.cols-4 on the docs page: 4, 2 or 1 columns, never 3
+        def grid_sweep():
+            load(d, f"{base}/docs.html")
+            out = {}
+            for w in GRID_WIDTHS:
+                actual = set_viewport(d, w)
+                time.sleep(0.15)
+                out[str(actual)] = d.execute_script(JS_GRID4)
+            return out
+        safe("gridSweep", grid_sweep, res)
         # pages opened straight from disk: stylesheet and fonts must still resolve
         res["fromDisk"] = {}
         for page in FILE_PAGES:
@@ -415,6 +433,13 @@ def summarize(allres):
                 lines.append(tag + ": " + ("ok" if not issues else ""))
                 for i in issues:
                     lines.append("      - " + i)
+        gs = r.get("gridSweep")
+        if gs and "error" in gs:
+            lines.append("  grid sweep: ERROR " + gs["error"])
+        elif gs:
+            bad = {w: v["columns"] for w, v in gs.items() if v and v["columns"] not in (1, 2, 4)}
+            lines.append("  grid cols-4 sweep (" + ", ".join(f"{w}px:{v['columns']}" for w, v in gs.items() if v) + "): "
+                         + ("ok" if not bad else f"BAD, 3-column layouts at {bad}"))
         for page, v in r.get("fromDisk", {}).items():
             if v.get("error"):
                 lines.append(f"  from disk {page}: ERROR {v['error']}")
