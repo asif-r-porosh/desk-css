@@ -18,3 +18,10 @@ __pycache__/
 
 # Files the desktop app saves into the project
 Claude outputs/
+
+# Real-browser check: local environment and results
+tests/browser/.venv/
+tests/browser/.cache/
+tests/browser/out/
+tests/browser/results.json
+tests/browser/summary.txt
