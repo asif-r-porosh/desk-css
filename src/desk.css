@@ -343,7 +343,7 @@
   table.compact th { font-size: var(--fs-xs); }
   :is(td, th).num { text-align: right; }
   :is(td, th) > :is(button, .btn) { vertical-align: middle; }
-  .table-wrap { overflow: auto; max-width: 100%; border: 1px solid var(--line); border-radius: var(--r-lg); margin-bottom: var(--s-4); }
+  .table-wrap { position: relative; overflow: auto; max-width: 100%; border: 1px solid var(--line); border-radius: var(--r-lg); margin-bottom: var(--s-4); }
   .table-wrap > table { margin: 0; }
   .table-wrap :is(th, td) { white-space: nowrap; }
   .table-wrap > table tbody tr:last-child > * { border-bottom: 0; }
