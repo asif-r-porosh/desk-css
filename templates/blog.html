@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Notes, a desk.css blog template</title>
+<link rel="stylesheet" href="../dist/desk.css">
+<link rel="stylesheet" href="../dist/desk.icons.css">
+<style>
+  /* Blog pieces desk.css does not have yet: an article column next to a sticky aside. */
+  .page { display: grid; gap: var(--s-6); grid-template-columns: minmax(0, 1fr); padding-block: var(--s-6) var(--s-7); }
+  @media (width >= 64rem) {
+    .page { grid-template-columns: minmax(0, 1fr) 17rem; }
+    .page > aside { position: sticky; top: calc(var(--h-topbar) + var(--s-4)); align-self: start; }
+  }
+  .post-head h1 { margin-bottom: var(--s-2); text-wrap: balance; }
+  .post-head .lead { font-size: var(--fs-lg); color: var(--fg-2); margin-bottom: var(--s-3); }
+  .post-meta { color: var(--fg-2); font-size: var(--fs-sm); }
+  .prose h2 { margin-block-start: 1.6em; }
+  .prose figure { margin-block: 1.5em; }
+  .post-head, .post-foot, .prose .table-wrap, .prose .accordion { font-family: var(--font-sans); font-size: var(--fs-md); line-height: var(--lh); }
+  .page > aside .card { margin-bottom: var(--s-4); }
+  .page > aside nav.vertical ul { margin: 0; }
+  #more .card { align-items: flex-start; }
+  #more .card h3 { margin: 0; font-size: var(--fs-md); }
+  .site-foot { border-block-start: 1px solid var(--line); padding-block: var(--s-5); color: var(--fg-2); font-size: var(--fs-sm); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#top">&#xF14F7; Field Notes</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#top" aria-current="page">Articles</a></li>
+      <li><a href="#more">Topics</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+  <div class="row nowrap push">
+    <button class="ghost icon" id="density-btn" aria-label="Toggle compact density" data-tip="Compact">&#xF0278;</button>
+    <button class="ghost icon" id="theme-btn" aria-label="Toggle light and dark" data-tip="Theme">&#xF0594;</button>
+  </div>
+</header>
+
+<div class="container page" id="top">
+
+  <main>
+    <article class="prose">
+      <header class="post-head">
+        <ol class="breadcrumb">
+          <li><a href="#more">Articles</a></li>
+          <li aria-current="page">Operations</li>
+        </ol>
+        <h1>A quiet pager is a design decision</h1>
+        <p class="lead">Most overnight alerts are not emergencies. They are decisions nobody made on a Tuesday afternoon, when it was cheap to make them.</p>
+        <div class="row post-meta">
+          <span>By Nadia Rowe</span>
+          <span>&#xF00ED; 9 Nov 2026</span>
+          <span>&#xF0150; 8 min read</span>
+          <a class="badge" href="#more">Operations</a>
+          <a class="badge" href="#more">On-call</a>
+        </div>
+      </header>
+
+        <h2 id="page-that-did-not-matter">The page that did not matter</h2>
+        <p>A small team inherited a monitoring setup with 140 alert rules. Nobody could say who had written most of them. Each rule had once been a reasonable reaction to an outage, and each had been kept because deleting an alert feels riskier than ignoring one.</p>
+        <p>The pager went off about eleven times a week. Roughly nine of those pages were closed within a minute by whoever woke up, with no action taken. People stopped trusting the sound. That is the real cost: the tenth page, the one that mattered, arrived to someone who had already learned to roll over.</p>
+
+        <h2 id="count-what-wakes-people">Count what wakes people</h2>
+        <p>The first step needs no tooling. For one month, write down every page with three facts: what fired, what the person did, and how long it took. Do not judge yet. A spreadsheet is enough.</p>
+        <p>At the end of the month the pattern is usually blunt. A handful of rules cause most of the noise, and most of those rules describe a symptom that fixes itself.</p>
+
+        <figure>
+          <div class="table-wrap" tabindex="0">
+            <table class="striped">
+              <caption>Pages per week before and after the cleanup (invented numbers)</caption>
+              <thead>
+                <tr><th scope="col">Week</th><th scope="col" class="num">Pages</th><th scope="col" class="num">Needed action</th><th scope="col" class="num">Median minutes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Before</td><td class="num">11</td><td class="num">2</td><td class="num">1</td></tr>
+                <tr><td>Month 1</td><td class="num">6</td><td class="num">2</td><td class="num">4</td></tr>
+                <tr><td>Month 2</td><td class="num">3</td><td class="num">2</td><td class="num">9</td></tr>
+                <tr><td>Month 3</td><td class="num">2</td><td class="num">2</td><td class="num">12</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </figure>
+
+        <p>The number of pages that needed action did not move. Everything else did. The median time went up because the remaining pages were real problems, which take longer than a reflex dismissal.</p>
+
+        <blockquote>
+          <p>If an alert has never led to a human decision, it is not an alert. It is a log line with a loud voice.</p>
+        </blockquote>
+
+        <h2 id="rules-that-survive">Rules that survive the cut</h2>
+        <p>Keep a rule only if it passes all three tests:</p>
+        <ol>
+          <li>A person can do something useful within the first ten minutes.</li>
+          <li>Waiting until morning would cost money, data or trust.</li>
+          <li>The alert text names the next step, not just the symptom.</li>
+        </ol>
+        <p>Everything else becomes a daily digest, a dashboard tile, or nothing. A rule that fails the first test can still be valuable as a ticket; it should simply not ring a phone.</p>
+
+        <pre tabindex="0"><code># before: fires on any spike, at any hour
+alert: queue_depth_high
+  when: queue_depth &gt; 1000
+  notify: pager
+
+# after: fires only when it has been true long enough to matter
+alert: queue_not_draining
+  when: queue_depth &gt; 1000 for 15m and drain_rate &lt; 1
+  notify: pager
+  note: "Check the consumer. Restart is safe. Runbook: queue-drain."</code></pre>
+
+        <p>The second rule is longer and looks fussier. It also says what is wrong, how long it has been wrong, and what to try first. Press <kbd>Ctrl</kbd> + <kbd>F</kbd> through your own rules for the word <code>notify: pager</code> and read each one aloud.</p>
+
+        <h2 id="questions">Questions people ask</h2>
+        <div class="accordion">
+          <details>
+            <summary>Will we miss a real incident?</summary>
+            <p>Less often than before. A page that is read carefully beats ten that are skimmed. Keep a weekly review of anything that was demoted, and promote it back if it earns the place.</p>
+          </details>
+          <details>
+            <summary>Who owns the cleanup?</summary>
+            <p>Whoever carries the pager that week. Ownership works better when the person who feels the noise can also delete it.</p>
+          </details>
+        </div>
+
+      <footer class="row between post-foot" style="margin-top: var(--s-6)">
+        <div class="row">
+          <button class="sm">&#xF02D1; Helpful</button>
+          <button class="sm">&#xF00C0; Save</button>
+          <button class="sm">&#xF0497; Share</button>
+        </div>
+        <a href="#more">&#xF0188; 12 comments</a>
+      </footer>
+    </article>
+
+    <section id="more" style="margin-top: var(--s-7)">
+      <h2>More from the notebook</h2>
+      <div class="grid cols-3">
+        <article class="card stack">
+          <span class="badge info">Tools</span>
+          <h3><a href="#top">Write the runbook before the alert</a></h3>
+          <p class="text-sm muted">If the page cannot link to a short document, it is not ready to ring a phone.</p>
+          <p class="text-sm muted">&#xF0150; 5 min read</p>
+        </article>
+        <article class="card stack">
+          <span class="badge ok">Habits</span>
+          <h3><a href="#top">The Friday digest</a></h3>
+          <p class="text-sm muted">One email that replaces a week of low-grade pings, and a ten-minute meeting to read it.</p>
+          <p class="text-sm muted">&#xF0150; 4 min read</p>
+        </article>
+        <article class="card stack">
+          <span class="badge warn">Culture</span>
+          <h3><a href="#top">Thanking the person who deleted the alert</a></h3>
+          <p class="text-sm muted">Removing noise is work too. Make it visible and make it count.</p>
+          <p class="text-sm muted">&#xF0150; 6 min read</p>
+        </article>
+      </div>
+      <nav aria-label="Pagination" style="margin-top: var(--s-5)">
+        <ul class="pagination">
+          <li><a href="#more" aria-label="Previous page">&#xF0141;</a></li>
+          <li><a href="#more" aria-current="page">1</a></li>
+          <li><a href="#more">2</a></li>
+          <li><a href="#more">3</a></li>
+          <li><a href="#more" aria-label="Next page">&#xF0142;</a></li>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <aside aria-label="Sidebar">
+    <div class="card">
+      <header><h2 class="text-lg">On this page</h2></header>
+      <nav class="vertical" aria-label="On this page">
+        <ul>
+          <li><a href="#page-that-did-not-matter">The page that did not matter</a></li>
+          <li><a href="#count-what-wakes-people">Count what wakes people</a></li>
+          <li><a href="#rules-that-survive">Rules that survive the cut</a></li>
+          <li><a href="#questions">Questions people ask</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <form class="card" action="#top" id="about">
+      <header><h2 class="text-lg">One note a month</h2></header>
+      <p class="text-sm muted">Short essays on running small systems calmly. No tracking, no spam.</p>
+      <div class="group">
+        <input type="email" aria-label="Email address" placeholder="you@example.org" required autocomplete="email">
+        <button class="primary">Join</button>
+      </div>
+    </form>
+
+    <div class="card">
+      <header><h2 class="text-lg">Topics</h2></header>
+      <div class="row">
+        <a class="badge" href="#more">On-call</a>
+        <a class="badge" href="#more">Runbooks</a>
+        <a class="badge" href="#more">Monitoring</a>
+        <a class="badge" href="#more">Postmortems</a>
+        <a class="badge" href="#more">Habits</a>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-foot">
+  <div class="container row between">
+    <span>Field Notes. All articles and names here are invented.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+  // Only the two header buttons use script, for page settings. Reading and navigating need none.
+  const root = document.documentElement;
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = (root.dataset.theme || (dark ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark';
+  });
+  document.getElementById('density-btn').addEventListener('click', () => {
+    if (root.dataset.density === 'compact') delete root.dataset.density; else root.dataset.density = 'compact';
+  });
+</script>
+</body>
+</html>
