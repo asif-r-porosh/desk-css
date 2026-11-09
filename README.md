@@ -60,7 +60,7 @@ With `desk.icons.min.css` (or `desk.icons.css`) loaded, an icon is its character
 <button class="danger">&#xF01B4; Delete</button>
 ```
 
-Each icon takes the size and color of the surrounding text. The full list, with search and copy, is in `docs.html`.
+Each icon takes the size and color of the surrounding text. Using the character code, with no icon tags or classes, is deliberate: icon markup stays as short as the text around it. The full list, with search and copy, is in `docs.html`.
 
 The icons are from [Material Design Icons](https://github.com/Templarian/MaterialDesign) by Pictogrammers (Apache 2.0), taken through [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) Symbols (MIT). Only the 170 listed glyphs are included.
 
