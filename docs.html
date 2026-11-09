@@ -797,6 +797,8 @@ OA-02  degraded  window=10  dlr_p95=94.0s</code></pre>
         <li>Opening dialogs with <code>commandfor</code> needs Chrome or Edge 135, Firefox 144, Safari 26.2. Older browsers ignore those buttons; <code>showModal()</code> in script still works.</li>
         <li>Small details fall back quietly: <code>accent-color</code> before Safari 26.2, <code>scrollbar-width</code> before Safari 18.2, <code>text-wrap: balance</code>, and <code>contrast-color()</code> (button text is white without it).</li>
       </ul>
+      <h3>Right-to-left</h3>
+      <p>Spacing, borders, alignment, dropdowns and the phone drawer use logical properties, so <code>dir="rtl"</code> on <code>&lt;html&gt;</code> mirrors the layout. Code stays left-to-right. <code>.text-left</code> and <code>.text-right</code> stay literal. The templates have their own physical CSS and are not mirrored.</p>
       <h3>Deliberately left out</h3>
       <ul>
         <li>A 12-column grid. <code>.grid</code> and <code>.cols-N</code> cover real layouts without breakpoint classes.</li>
