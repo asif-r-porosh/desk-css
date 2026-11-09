@@ -10,9 +10,6 @@
   /* Dashboard pieces desk.css does not have yet: a bar chart and an uneven two-column row. */
   .wide-split { display: grid; gap: var(--s-4); grid-template-columns: minmax(0, 1fr); align-items: start; }
   @media (width >= 64rem) { .wide-split { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
-  /* cols-4 gives 3 + 1 at mid widths; keep the stat cards at 2 + 2 until there is room for 4 */
-  .stats.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  @media (width >= 64rem) { .stats.grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .bars { display: flex; align-items: flex-end; gap: 3px; height: 11rem; padding-top: var(--s-2); }
   .bars i { flex: 1; height: calc(var(--v) * 1%); min-height: 2px; background: var(--accent-fill); border-radius: 2px 2px 0 0; opacity: .85; }
   .bars i:hover { opacity: 1; }
@@ -78,7 +75,7 @@
         </div>
       </div>
 
-      <div class="grid cols-4 stats">
+      <div class="grid cols-4">
         <div class="stat">
           <span class="label">&#xF0369; Messages sent</span>
           <span class="value">31,484,000</span>

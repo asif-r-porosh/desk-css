@@ -554,7 +554,13 @@
           grid-template-columns: repeat(auto-fit, minmax(min(100%, max(var(--min, 14rem), (100% - (var(--n) - 1) * var(--gap, var(--s-4))) / var(--n))), 1fr)); }
   .grid.cols-2 { --n: 2; --min: 16rem; }
   .grid.cols-3 { --n: 3; --min: 13rem; }
-  .grid.cols-4 { --n: 4; --min: 10rem; }
+  /* cols-4 steps 4, 2, 1 by the grid's own width (the clamp() pair is a width switch),
+     so four items never wrap as 3 + 1. */
+  .grid.cols-4 { --n: 4; --min: 10rem; --g: var(--gap, var(--s-4));
+    grid-template-columns: repeat(auto-fit, minmax(clamp(
+      (100% - 3 * var(--g)) / 4,
+      (4 * var(--min) + 3 * var(--g) - 100%) * 999,
+      clamp((100% - var(--g)) / 2, (2 * var(--min) + var(--g) - 100%) * 999, 100%)), 1fr)); }
   .grid.cols-5 { --n: 5; --min: 9rem; }
   .grid.cols-6 { --n: 6; --min: 8rem; }
 
