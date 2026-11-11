@@ -76,6 +76,24 @@ The icons are from [Material Design Icons](https://github.com/Templarian/Materia
 
 All data is invented. Apart from the showcase, the pages use script only for the theme and density buttons.
 
+## For coding agents
+
+`dist/DESK.md` is a plain-text guide that any coding agent can follow: the rules, a snippet per component, the complete class list. `dist/check.py` checks a finished page against the real CSS, with Python 3 and nothing else:
+
+```sh
+python3 check.py page.html          # unknown classes, wrong icon codes, bad data-* values, basic accessibility
+python3 check.py --icon home        # icon codes by name, never guessed
+```
+
+It exits with 1 when it finds an error, so an agent can run it until it passes. To use it in a project, copy `DESK.md`, `check.py` and `icons.json` next to the CSS and add two lines to the agent's instruction file (`AGENTS.md`, for example):
+
+```
+Build every page with desk.css: follow desk/DESK.md and use only the classes listed there.
+After each change run: python3 desk/check.py <page.html> and fix every error.
+```
+
+The guide and the checker are tested against the CSS, so they cannot drift: `python3 -m unittest discover -s tests/guide`.
+
 ## Overrides
 
 All rules live in a cascade layer named `desk`. CSS written outside a layer always wins, so `!important` is never needed. Every size, space and color is a CSS variable, changeable on `:root`.
@@ -105,7 +123,7 @@ The dialog buttons in the docs and templates use `commandfor` and `command="show
 python3 tools/build.py
 ```
 
-That writes the readable and minified files to `dist/` and refreshes the icon list in `docs.html`. Python 3 is the only requirement.
+That writes the readable and minified files to `dist/`, copies `src/DESK.md` and `src/check.py` there, and refreshes the icon list in `docs.html`. Python 3 is the only requirement.
 
 Changing the icon set (`tools/icons.txt`) or updating the fonts needs `fonttools` and `brotli`:
 
