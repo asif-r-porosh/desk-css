@@ -4,8 +4,9 @@
 Usage:
   python3 tools/build.py
       Writes dist/desk.css, dist/desk.min.css, dist/desk.icons.css and
-      dist/desk.icons.min.css, and refreshes the icon cheat sheet in docs.html
-      (and templates/showcase.html when present). Needs only Python 3.
+      dist/desk.icons.min.css, copies src/DESK.md and src/check.py to dist/, and
+      refreshes the icon cheat sheet in docs.html (and templates/showcase.html
+      when present). Needs only Python 3.
 
   python3 tools/build.py --fonts <fonts-dir> [<symbols-nerd-font.ttf>]
       Same, after re-subsetting the fonts first (needs fonttools and brotli):
@@ -19,7 +20,8 @@ Usage:
       (from https://github.com/google/fonts, folders ofl/hankengrotesk and ofl/jetbrainsmono).
       The weights are pinned to fixed values and the glyphs cut down to Latin.
 
-Sources: src/desk.css (hand-edited), src/desk.icons.css (template), src/desk-icons.woff2.
+Sources: src/desk.css (hand-edited), src/desk.icons.css (template), src/desk-icons.woff2,
+src/DESK.md and src/check.py (the guide and checker for coding agents, copied as they are).
 """
 import base64
 import json
@@ -214,6 +216,11 @@ def build_cheatsheet():
         write_text(path, html)
 
 
+def copy_agent_files():
+    for name in ("DESK.md", "check.py"):
+        shutil.copyfile(os.path.join(SRC, name), os.path.join(DIST, name))
+
+
 def report():
     import gzip
     for name in ("desk.css", "desk.min.css", "desk.icons.css", "desk.icons.min.css"):
@@ -233,6 +240,7 @@ def main():
     elif args:
         sys.exit(__doc__)
     build_css()
+    copy_agent_files()
     build_cheatsheet()
     report()
 
