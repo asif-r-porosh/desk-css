@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Real-browser check for desk.css (Firefox, Safari, Chrome) through WebDriver.
 
-Loads docs.html and the four templates, runs feature probes, layout, font, colour
+Loads docs.html, index.html and the five templates, runs feature probes, layout, font, colour
 and accessibility (axe-core) checks, exercises the dialog, the drawer and the inbox,
 and writes screenshots, results.json and summary.txt into tests/browser/out/.
 
@@ -33,7 +33,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parents[1]   # tests/browser -> repository root
 OUT = HERE / "out"
 PAGES = ["docs.html", "templates/inbox.html", "templates/dashboard.html",
-         "templates/kanban.html", "templates/blog.html", "templates/showcase.html"]
+         "templates/kanban.html", "templates/blog.html", "templates/showcase.html", "index.html"]
 WIDTHS = [1440, 700, 390]          # requested; the browser may refuse the narrowest
 GRID_WIDTHS = [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1440]   # .grid.cols-4 must never show 3 + 1
 FILE_PAGES = ["docs.html", "templates/inbox.html"]   # also opened straight from disk

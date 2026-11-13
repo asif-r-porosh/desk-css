@@ -1,6 +1,6 @@
 # Real-browser check
 
-Opens `docs.html` and the four templates in a real browser through WebDriver and
+Opens `docs.html`, `index.html` and the five templates in a real browser through WebDriver and
 reports problems. Meant to be re-run after any change to the CSS.
 
 ```sh

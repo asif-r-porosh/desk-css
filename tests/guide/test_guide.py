@@ -6,7 +6,7 @@ Checks:
   - dist/DESK.md and dist/check.py are the same as their sources in src/ (run tools/build.py).
   - Every class DESK.md names exists in the CSS, and every class in the CSS is named in DESK.md.
   - Every html example in DESK.md passes check.py with no errors.
-  - docs.html and every template pass check.py with no errors and no warnings.
+  - docs.html, index.html and every template pass check.py with no errors and no warnings.
   - check.py reports the mistakes an agent is likely to make, on a deliberately broken page.
 """
 import os
@@ -111,7 +111,7 @@ class Guide(unittest.TestCase):
 
 class Pages(unittest.TestCase):
     def test_docs_and_templates_are_clean(self):
-        pages = [os.path.join(ROOT, "docs.html")]
+        pages = [os.path.join(ROOT, "docs.html"), os.path.join(ROOT, "index.html")]
         folder = os.path.join(ROOT, "templates")
         pages += sorted(os.path.join(folder, n) for n in os.listdir(folder) if n.endswith(".html"))
         code, out = run_check("--strict", *pages)

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>desk.css: live demos</title>
+<meta name="description" content="Live demos of desk.css, a small CSS library for admin screens, dashboards and internal tools.">
+<link rel="stylesheet" href="dist/desk.css">
+<link rel="stylesheet" href="dist/desk.icons.css">
+<style>
+  /* Page spacing and equal-height demo cards: pieces desk.css does not have. */
+  main.container { padding-block: var(--s-6); }
+  footer.container { padding-block: var(--s-4) var(--s-6); }
+  .grid > .card { display: flex; flex-direction: column; }
+  .grid > .card > footer { margin-top: auto; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">desk.css</a>
+  <span class="badge wide-only">v0.1</span>
+  <nav class="wide-only push">
+    <ul>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="https://github.com/asif-r-porosh/desk-css">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section>
+    <h1>desk.css</h1>
+    <p class="text-lg muted">A small CSS library for admin screens, dashboards and internal tools. Plain HTML looks right with no classes. No JavaScript, no build step, 7 KB gzipped.</p>
+    <div class="row">
+      <a class="btn primary lg" href="templates/dashboard.html">&#xF056E; Open a live demo</a>
+      <a class="btn lg" href="docs.html">&#xF14F7; Read the docs</a>
+      <a class="btn ghost lg" href="https://github.com/asif-r-porosh/desk-css">&#xF02A4; GitHub</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Live demos</h2>
+    <p class="muted">Every page below is plain HTML styled by desk.css. The data is invented. The theme and density buttons in each top bar switch light and dark and compact spacing.</p>
+    <div class="grid cols-3">
+      <article class="card">
+        <header><h3>&#xF056E; Dashboard</h3></header>
+        <p>Stat cards, a bar chart in CSS, a table with filter and pagination, an activity list.</p>
+        <footer><a class="btn sm primary" href="templates/dashboard.html">Open demo</a></footer>
+      </article>
+      <article class="card">
+        <header><h3>&#xF0687; Inbox</h3></header>
+        <p>A three-pane mailbox. Messages switch with plain CSS, with no script.</p>
+        <footer><a class="btn sm primary" href="templates/inbox.html">Open demo</a></footer>
+      </article>
+      <article class="card">
+        <header><h3>&#xF056D; Kanban</h3></header>
+        <p>A board with scrolling columns and a dialog for new cards.</p>
+        <footer><a class="btn sm primary" href="templates/kanban.html">Open demo</a></footer>
+      </article>
+      <article class="card">
+        <header><h3>&#xF0219; Blog</h3></header>
+        <p>An article page with prose, a table, code, a sticky contents list and a sign-up form.</p>
+        <footer><a class="btn sm primary" href="templates/blog.html">Open demo</a></footer>
+      </article>
+      <article class="card">
+        <header><h3>&#xF0570; Showcase</h3></header>
+        <p>Every component, inside an app shell.</p>
+        <footer><a class="btn sm primary" href="templates/showcase.html">Open demo</a></footer>
+      </article>
+      <article class="card">
+        <header><h3>&#xF14F7; Docs</h3></header>
+        <p>The guide: elements, components, layout, 170 icons, tokens and four recipes.</p>
+        <footer><a class="btn sm primary" href="docs.html">Open docs</a></footer>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Use it</h2>
+    <p>Copy <code>desk.min.css</code> from <code>dist/</code> next to the page and link it. Icons and fonts are optional and load from the <code>fonts/</code> folder next to the CSS.</p>
+    <pre tabindex="0"><code>&lt;link rel="stylesheet" href="desk.min.css"&gt;
+&lt;link rel="stylesheet" href="desk.icons.min.css"&gt;  &lt;!-- optional --&gt;</code></pre>
+    <p>For coding agents, <a href="https://github.com/asif-r-porosh/desk-css/blob/main/dist/DESK.md">DESK.md</a> is a plain-text guide and <a href="https://github.com/asif-r-porosh/desk-css/blob/main/dist/check.py">check.py</a> checks a finished page against the real CSS.</p>
+  </section>
+
+</main>
+
+<footer class="container">
+  <p class="text-sm muted">desk.css is released under the <a href="https://github.com/asif-r-porosh/desk-css/blob/main/LICENSE">MIT License</a>. The bundled fonts and icons keep their own licenses.</p>
+</footer>
+
+</body>
+</html>
