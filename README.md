@@ -1,6 +1,6 @@
 # desk.css
 
-**[Live demos](https://asif-r-porosh.github.io/desk-css/)** · [Docs](https://asif-r-porosh.github.io/desk-css/docs.html) · [Dashboard](https://asif-r-porosh.github.io/desk-css/templates/dashboard.html) · [Inbox](https://asif-r-porosh.github.io/desk-css/templates/inbox.html) · [Kanban](https://asif-r-porosh.github.io/desk-css/templates/kanban.html) · [Blog](https://asif-r-porosh.github.io/desk-css/templates/blog.html) · [Showcase](https://asif-r-porosh.github.io/desk-css/templates/showcase.html)
+ 
 
 A small CSS library for everyday tools: admin screens, dashboards, and internal applications.
 
@@ -11,6 +11,10 @@ Classless libraries keep things simple by styling bare HTML elements, but layout
 desk.css sits between the two. Plain HTML looks right without classes. A small set of utility classes handles everything else.
 
 No JavaScript. No build step. No 12-column grid.
+
+**[Live demos](https://asif-r-porosh.github.io/desk-css/):** [Dashboard](https://asif-r-porosh.github.io/desk-css/templates/dashboard.html) **|** [Inbox](https://asif-r-porosh.github.io/desk-css/templates/inbox.html) **|** [Kanban](https://asif-r-porosh.github.io/desk-css/templates/kanban.html) **|** [Blog](https://asif-r-porosh.github.io/desk-css/templates/blog.html) **|** [Showcase](https://asif-r-porosh.github.io/desk-css/templates/showcase.html)
+
+[Docs](https://asif-r-porosh.github.io/desk-css/docs.html)
 
 ## Features
 
