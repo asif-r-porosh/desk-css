@@ -1,5 +1,7 @@
 # desk.css
 
+**[Live demos](https://asif-r-porosh.github.io/desk-css/)** · [Docs](https://asif-r-porosh.github.io/desk-css/docs.html) · [Dashboard](https://asif-r-porosh.github.io/desk-css/templates/dashboard.html) · [Inbox](https://asif-r-porosh.github.io/desk-css/templates/inbox.html) · [Kanban](https://asif-r-porosh.github.io/desk-css/templates/kanban.html) · [Blog](https://asif-r-porosh.github.io/desk-css/templates/blog.html) · [Showcase](https://asif-r-porosh.github.io/desk-css/templates/showcase.html)
+
 A small CSS library for everyday tools: admin screens, dashboards, and internal applications.
 
 Many CSS frameworks are designed with presentation-oriented interfaces in mind, favouring generous spacing, larger typography, and prominent controls. For data-heavy applications, this can result in interfaces that use more screen space than necessary.
@@ -70,13 +72,13 @@ The icons are from [Material Design Icons](https://github.com/Templarian/Materia
 
 ## Templates
 
-`templates/` holds single-page examples. Each links `../dist/desk.css`, so it opens straight from a clone.
+`templates/` holds single-page examples. Each links `../dist/desk.css`, so it opens straight from a clone. The live versions are at the [demo page](https://asif-r-porosh.github.io/desk-css/).
 
-- `inbox.html`: three-pane mailbox; messages switch with plain CSS (`:target`).
-- `dashboard.html`: stat cards, a bar chart in CSS, a table with filter and pagination, an activity list.
-- `kanban.html`: a board with scrolling columns and a dialog for new cards.
-- `blog.html`: an article page with prose, a table, code, a sticky contents list and a sign-up form.
-- `showcase.html`: every component, inside an app shell.
+- [`inbox.html`](https://asif-r-porosh.github.io/desk-css/templates/inbox.html): three-pane mailbox; messages switch with plain CSS (`:target`).
+- [`dashboard.html`](https://asif-r-porosh.github.io/desk-css/templates/dashboard.html): stat cards, a bar chart in CSS, a table with filter and pagination, an activity list.
+- [`kanban.html`](https://asif-r-porosh.github.io/desk-css/templates/kanban.html): a board with scrolling columns and a dialog for new cards.
+- [`blog.html`](https://asif-r-porosh.github.io/desk-css/templates/blog.html): an article page with prose, a table, code, a sticky contents list and a sign-up form.
+- [`showcase.html`](https://asif-r-porosh.github.io/desk-css/templates/showcase.html): every component, inside an app shell.
 
 All data is invented. Apart from the showcase, the pages use script only for the theme and density buttons.
 
