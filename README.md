@@ -1,10 +1,14 @@
 # desk.css
 
-A small CSS library for everyday tools: admin screens, dashboards, internal apps.
+A small CSS library for everyday tools: admin screens, dashboards, and internal applications.
 
-Many CSS frameworks are tuned for marketing pages, with large buttons, generous padding and big type. On a laptop, a data-heavy screen built with them feels zoomed in. Classless libraries stay small and quiet, but they style bare HTML elements only; layouts such as a sidebar, or components such as status badges, still need custom CSS.
+Many CSS frameworks are designed with presentation-oriented interfaces in mind, favouring generous spacing, larger typography, and prominent controls. For data-heavy applications, this can result in interfaces that use more screen space than necessary.
 
-desk.css sits in between. Plain HTML looks right with no classes. A short list of classes covers the rest. No JavaScript, no build step to use it, no 12-column grid.
+Classless libraries keep things simple by styling bare HTML elements, but layouts such as sidebars and components such as status badges still require custom CSS.
+
+desk.css sits between the two. Plain HTML looks right without classes. A small set of utility classes handles everything else.
+
+No JavaScript. No build step. No 12-column grid.
 
 ## Features
 
